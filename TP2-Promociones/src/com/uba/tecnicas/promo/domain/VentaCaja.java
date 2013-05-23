@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VentaCaja implements Venta {
-
-	List<Item> items = new ArrayList<Item>();
+	private List<Item> items = new ArrayList<Item>();
 	
 	@Override
 	public double getTotal() {
-		return items.get(0).getPrecio();
+		double importe = 0;
+		for (Item item : items)
+			importe = item.getImporte();
+		return importe;
 	}
 
 	@Override
@@ -18,4 +20,18 @@ public class VentaCaja implements Venta {
 		items.add(item);
 	}
 
+	@Override
+	public List<Item> getItems() {
+		return items;
+	}
+
+	@Override
+	public List<Item> getItems(FiltroItem filtro) {
+		return filtro.filtrar(items);
+	}
+
+	@Override
+	public Item getItem(FiltroItem filtro) throws ProductoNoEncontradoException {
+		return filtro.filtrarUno(items);
+	}
 }

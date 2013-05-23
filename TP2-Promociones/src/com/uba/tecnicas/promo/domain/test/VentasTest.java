@@ -5,23 +5,23 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.uba.tecnicas.promo.domain.Item;
-import com.uba.tecnicas.promo.domain.ItemComprado;
 import com.uba.tecnicas.promo.domain.Producto;
+import com.uba.tecnicas.promo.domain.ProductoNoEncontradoException;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
+import com.uba.tecnicas.promo.domain.filtros.FiltroRubro;
 
 public class VentasTest {
 	private Venta venta;
 	@Before
 	public void setUp() throws Exception {
-		venta=new VentaCaja();
+		venta = new VentaCaja();
 	}
 
 	@Test
 	public void testVentaUnCaramelo() {
 		double total = 1.0;
-		Producto prod = new Producto("Caramelo",1.0);
+		Producto prod = new Producto("Caramelo", 1.0, "");
 		venta.agregar(prod,1);
 		assertEquals(total, venta.getTotal(),0);
 	}
@@ -29,9 +29,35 @@ public class VentasTest {
 	@Test
 	public void testVentaUnDetegente() {
 		double total = 6.0;
-		Producto prod = new Producto("Deterente",6.0);
+		Producto prod = new Producto("Detergente", 6.0, "");
 		venta.agregar(prod,1);
-		assertEquals(total, venta.getTotal(),0);
+		assertEquals(total, venta.getTotal(), 0);
 	}
-
+	
+	@Test
+	public void testFiltrarUnItemPorRubro() {
+		Producto prod1 = new Producto("Fosforos", 6.0, "Cocina");
+		Producto prod2 = new Producto("Detergente", 6.0, "Limpieza");
+		venta.agregar(prod1, 1);
+		venta.agregar(prod2, 1);
+		try {
+			assertEquals(prod2.getNombre(), venta.getItem(new FiltroRubro("Limpieza")).getProducto().getNombre());
+		} catch (ProductoNoEncontradoException e) {
+			assertFalse("Fallo al no encontrar un item por el rubro", true);
+		}
+	}
+	
+	@Test
+	public void testFiltrarMuchosItemsPorRubro() {
+		Producto prod1 = new Producto("Arroz", 6.0, "Cocina");
+		Producto prod2 = new Producto("Detergente", 6.0, "Limpieza");
+		Producto prod3 = new Producto("Esponja", 6.0, "Limpieza");
+		Producto prod4 = new Producto("Fideos", 6.0, "Cocina");
+		venta.agregar(prod1, 1);
+		venta.agregar(prod2, 1);
+		venta.agregar(prod3, 1);
+		venta.agregar(prod4, 1);
+		assertEquals(prod2.getNombre(), venta.getItems(new FiltroRubro("Limpieza")).get(0).getProducto().getNombre());
+		assertEquals(prod3.getNombre(), venta.getItems(new FiltroRubro("Limpieza")).get(1).getProducto().getNombre());
+	}
 }

@@ -1,7 +1,6 @@
 package com.uba.tecnicas.promo.domain;
 
 public interface Item {
-
-	double getPrecio();
-
+	public double getImporte();
+	public Producto getProducto();
 }
