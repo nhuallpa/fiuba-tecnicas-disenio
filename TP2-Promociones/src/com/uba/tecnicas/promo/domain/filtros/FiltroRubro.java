@@ -11,7 +11,7 @@ public class FiltroRubro extends FiltroItem {
 	}
 	
 	@Override
-	public boolean coincide(Item entrada) {
+	public boolean seCumple(Item entrada) {
 		return entrada.getProducto().getRubro() == rubro;
 	}
 

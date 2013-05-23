@@ -12,7 +12,7 @@ public class FiltroProducto extends FiltroItem {
 	}
 	
 	@Override
-	public boolean coincide(Item entrada) {
+	public boolean seCumple(Item entrada) {
 		return entrada.getProducto().equals(producto);
 	}
 }

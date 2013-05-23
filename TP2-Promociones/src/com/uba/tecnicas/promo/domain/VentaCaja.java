@@ -27,11 +27,22 @@ public class VentaCaja implements Venta {
 
 	@Override
 	public List<Item> getItems(FiltroItem filtro) {
-		return filtro.filtrar(items);
+		List<Item> coincidencias = new ArrayList<Item>();
+		for (Item item : items) {
+			if (filtro.seCumple(item)) {
+				coincidencias.add(item);
+			}
+		}
+		return coincidencias;
 	}
 
 	@Override
 	public Item getItem(FiltroItem filtro) throws ProductoNoEncontradoException {
-		return filtro.filtrarUno(items);
+		for (Item item : items) {
+			if (filtro.seCumple(item)) {
+				return item;
+			}
+		}
+		throw new ProductoNoEncontradoException();
 	}
 }
