@@ -67,4 +67,13 @@ public class VentaCaja implements Venta {
 		}
 		return cantidad;
 	}
+
+	@Override
+	public int getCantidadProductosVendidos() {
+		int cantidadProductos = 0;
+		for (Item item : items) {
+			cantidadProductos += item.getCantidad(); 
+		}
+		return cantidadProductos;
+	}
 }

@@ -11,4 +11,5 @@ public interface Venta {
 	public List<Descuento> getDescuentos();
 	public void agregarDescuento(Descuento descuento);
 	public double getCantidadDescontada(Producto producto);
+	public int getCantidadProductosVendidos();
 }
