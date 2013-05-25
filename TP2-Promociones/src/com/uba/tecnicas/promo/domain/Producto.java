@@ -22,4 +22,10 @@ public class Producto {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	@Override
+	public boolean equals(Object otro) {
+		Producto producto = (Producto)otro;
+		return (producto.nombre == nombre && producto.rubro == rubro);
+	}
 }

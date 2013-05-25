@@ -22,7 +22,7 @@ public class VentasTest {
 	public void testVentaUnCaramelo() {
 		double total = 1.0;
 		Producto prod = new Producto("Caramelo", 1.0, "");
-		venta.agregar(prod,1);
+		venta.agregarItem(prod,1);
 		assertEquals(total, venta.getTotal(),0);
 	}
 	
@@ -30,7 +30,7 @@ public class VentasTest {
 	public void testVentaUnDetegente() {
 		double total = 6.0;
 		Producto prod = new Producto("Detergente", 6.0, "");
-		venta.agregar(prod,1);
+		venta.agregarItem(prod,1);
 		assertEquals(total, venta.getTotal(), 0);
 	}
 	
@@ -38,8 +38,8 @@ public class VentasTest {
 	public void testFiltrarUnItemPorRubro() {
 		Producto prod1 = new Producto("Fosforos", 6.0, "Cocina");
 		Producto prod2 = new Producto("Detergente", 6.0, "Limpieza");
-		venta.agregar(prod1, 1);
-		venta.agregar(prod2, 1);
+		venta.agregarItem(prod1, 1);
+		venta.agregarItem(prod2, 1);
 		try {
 			assertEquals(prod2.getNombre(), venta.getItem(new FiltroRubro("Limpieza")).getProducto().getNombre());
 		} catch (ProductoNoEncontradoException e) {
@@ -53,10 +53,10 @@ public class VentasTest {
 		Producto prod2 = new Producto("Detergente", 6.0, "Limpieza");
 		Producto prod3 = new Producto("Esponja", 6.0, "Limpieza");
 		Producto prod4 = new Producto("Fideos", 6.0, "Cocina");
-		venta.agregar(prod1, 1);
-		venta.agregar(prod2, 1);
-		venta.agregar(prod3, 1);
-		venta.agregar(prod4, 1);
+		venta.agregarItem(prod1, 1);
+		venta.agregarItem(prod2, 1);
+		venta.agregarItem(prod3, 1);
+		venta.agregarItem(prod4, 1);
 		assertEquals(prod2.getNombre(), venta.getItems(new FiltroRubro("Limpieza")).get(0).getProducto().getNombre());
 		assertEquals(prod3.getNombre(), venta.getItems(new FiltroRubro("Limpieza")).get(1).getProducto().getNombre());
 	}

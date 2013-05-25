@@ -5,6 +5,7 @@ import java.util.List;
 
 public class VentaCaja implements Venta {
 	private List<Item> items = new ArrayList<Item>();
+	private List<Descuento> descuentos = new ArrayList<Descuento>();
 	
 	@Override
 	public double getTotal() {
@@ -15,8 +16,8 @@ public class VentaCaja implements Venta {
 	}
 
 	@Override
-	public void agregar(Producto producto, int cantidad) {
-		Item item = new ItemComprado(producto, cantidad);
+	public void agregarItem(Producto producto, double cantidad) {
+		Item item = new Item(producto, cantidad);
 		items.add(item);
 	}
 
@@ -44,5 +45,15 @@ public class VentaCaja implements Venta {
 			}
 		}
 		throw new ProductoNoEncontradoException();
+	}
+
+	@Override
+	public List<Descuento> getDescuentos() {
+		return descuentos;
+	}
+
+	@Override
+	public void agregarDescuento(Descuento descuento) {
+		descuentos.add(descuento);
 	}
 }
