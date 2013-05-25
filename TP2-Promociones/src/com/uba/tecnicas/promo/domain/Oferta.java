@@ -21,7 +21,7 @@ public class Oferta {
 			venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
 			if (!repetir)
 				return;
-			aplicantes = condicion.getAplicantes(venta);
+			aplicantes = condicion.getAplicantes(venta); // Porque se llama dos veces?
 		}
 	}
 }

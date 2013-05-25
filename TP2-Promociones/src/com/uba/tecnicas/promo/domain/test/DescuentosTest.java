@@ -1,5 +1,7 @@
 package com.uba.tecnicas.promo.domain.test;
 
+import java.util.Date;
+
 import junit.framework.TestCase;
 
 import org.junit.Before;
@@ -25,7 +27,7 @@ public class DescuentosTest extends TestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		venta = new VentaCaja();
+		venta = new VentaCaja(new Date());
 		pepsi = new Producto("Pepsi", 12, "Bebidas");
 		sprite = new Producto("Sprite", 12, "Bebidas");
 	}

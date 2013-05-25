@@ -18,4 +18,10 @@ public class CondicionRubro implements CondicionOferta {
 	public List<Item> getAplicantes(Venta venta) {
 		return venta.getItems(new FiltroRubro(rubro));
 	}
+
+	@Override
+	public boolean aplica(Venta venta) {
+		// TODO Se puede chequear si hay porductos de este Rubro
+		return true;
+	}
 }

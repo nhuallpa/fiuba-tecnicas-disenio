@@ -22,13 +22,26 @@ public class CondicionCompuesta implements CondicionOferta {
 	public List<Item> getAplicantes(Venta venta) {
 		List<Item> resultado = new ArrayList<Item>();
 		List<Item> resultadoIndividual;
+		if (!this.aplica(venta)) return resultado;
 		for (CondicionOferta condicion : condiciones) {
 			resultadoIndividual = condicion.getAplicantes(venta);
 			if (resultadoIndividual.size() > 0)
 				resultado.addAll(resultadoIndividual);
-			else
-				return resultadoIndividual;
+			//else
+				//return resultadoIndividual;
 		}
 		return resultado;
+	}
+
+	@Override
+	public boolean aplica(Venta venta) {
+		boolean aplica = true;
+		for (CondicionOferta condicion : condiciones) {
+			if (!condicion.aplica(venta)) {
+				aplica = false;
+				break;
+			}
+		}
+		return aplica;
 	}
 }

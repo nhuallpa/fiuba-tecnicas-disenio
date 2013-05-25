@@ -2,8 +2,6 @@ package com.uba.tecnicas.promo.domain;
 
 import java.util.Date;
 
-import com.uba.tecnicas.promo.domain.condiciones.CondicionCompuesta;
-import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
 
 public class Caja {
 	Venta ventaActual = null;
@@ -14,7 +12,7 @@ public class Caja {
 	}
 
 	public void inicarVenta() {
-		ventaActual = new VentaCaja();
+		ventaActual = new VentaCaja(fechaApertura);
 	}
 
 	public void agregarProducto(Producto producto, int cantidad) {
@@ -23,12 +21,10 @@ public class Caja {
 
 	public void finalizarVenta(Oferta oferta) {
 		oferta.aplicar(ventaActual);
-		
 	}
 
 	public void cerrar() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public double getVentaTotal() {
