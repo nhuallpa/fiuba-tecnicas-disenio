@@ -20,7 +20,7 @@ public class CondicionItem implements CondicionOferta {
 		List<Item> items = new ArrayList<Item>();
 		try {
 			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
-			if (encontrado.getCantidad() > itemBuscado.getCantidad())
+			if (encontrado.getCantidad() >= itemBuscado.getCantidad())
 			items.add(encontrado);
 		}
 		catch (Exception e) {

@@ -1,6 +1,6 @@
 package com.uba.tecnicas.promo.domain.test;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +11,9 @@ import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.filtros.FiltroRubro;
 
-public class VentasTest {
+public class VentasTest extends TestCase {
 	private Venta venta;
+	
 	@Before
 	public void setUp() throws Exception {
 		venta = new VentaCaja();

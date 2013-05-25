@@ -11,7 +11,9 @@ public class VentaCaja implements Venta {
 	public double getTotal() {
 		double importe = 0;
 		for (Item item : items)
-			importe = item.getImporte();
+			importe += item.getImporte();
+		for (Descuento descuento : descuentos)
+			importe -= descuento.getMonto();
 		return importe;
 	}
 
