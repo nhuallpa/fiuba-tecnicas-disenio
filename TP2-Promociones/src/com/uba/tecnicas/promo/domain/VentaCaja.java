@@ -58,4 +58,13 @@ public class VentaCaja implements Venta {
 	public void agregarDescuento(Descuento descuento) {
 		descuentos.add(descuento);
 	}
+
+	@Override
+	public double getCantidadDescontada(Producto producto) {
+		double cantidad = 0;
+		for (Descuento descuento : descuentos) {
+			cantidad += descuento.getCantidadAplicantes(producto);
+		}
+		return cantidad;
+	}
 }

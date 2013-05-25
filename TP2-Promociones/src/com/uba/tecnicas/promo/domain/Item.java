@@ -20,6 +20,10 @@ public class Item {
 	public Producto getProducto() {
 		return producto;
 	}
+	
+	public void sumar(double cantidad) {
+		this.cantidad += cantidad;
+	}
 
 	public Item resta(Item item) throws ImposibleRestarItemException {
 		if (this.producto.equals(item.producto) && cantidad < item.cantidad)

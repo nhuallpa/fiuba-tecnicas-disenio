@@ -10,4 +10,5 @@ public interface Venta {
 	public Item getItem(FiltroItem filtro) throws ProductoNoEncontradoException;
 	public List<Descuento> getDescuentos();
 	public void agregarDescuento(Descuento descuento);
+	public double getCantidadDescontada(Producto producto);
 }

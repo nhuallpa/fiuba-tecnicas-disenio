@@ -21,8 +21,13 @@ public class CondicionCompuesta implements CondicionOferta {
 	@Override
 	public List<Item> getAplicantes(Venta venta) {
 		List<Item> resultado = new ArrayList<Item>();
+		List<Item> resultadoIndividual;
 		for (CondicionOferta condicion : condiciones) {
-			resultado.addAll(condicion.getAplicantes(venta));
+			resultadoIndividual = condicion.getAplicantes(venta);
+			if (resultadoIndividual.size() > 0)
+				resultado.addAll(resultadoIndividual);
+			else
+				return resultadoIndividual;
 		}
 		return resultado;
 	}

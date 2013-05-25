@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.uba.tecnicas.promo.domain.CondicionOferta;
 import com.uba.tecnicas.promo.domain.Item;
+import com.uba.tecnicas.promo.domain.ProductoNoEncontradoException;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.filtros.FiltroProducto;
 
@@ -20,11 +21,11 @@ public class CondicionItem implements CondicionOferta {
 		List<Item> items = new ArrayList<Item>();
 		try {
 			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
-			if (encontrado.getCantidad() >= itemBuscado.getCantidad())
-			items.add(encontrado);
+			double diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
+			if (diferencia >= itemBuscado.getCantidad())
+				items.add(itemBuscado);
 		}
-		catch (Exception e) {
-		}
+		catch (ProductoNoEncontradoException e) {}
 		return items;
 	}
 }

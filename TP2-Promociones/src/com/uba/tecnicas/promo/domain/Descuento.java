@@ -36,11 +36,12 @@ public class Descuento {
 		return monto;
 	}
 	
-	public Item getAplicante(Producto producto) {
+	public double getCantidadAplicantes(Producto producto) {
+		double cantidad = 0;
 		for (Item item : aplicantes) {
 			if (item.getProducto().equals(producto))
-				return item;
+				cantidad += item.getCantidad();
 		}
-		return null;
+		return cantidad;
 	}
 }

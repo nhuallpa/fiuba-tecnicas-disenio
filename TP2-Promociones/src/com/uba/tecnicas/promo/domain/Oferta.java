@@ -17,12 +17,11 @@ public class Oferta {
 	
 	public void aplicar(Venta venta) {
 		List<Item> aplicantes = condicion.getAplicantes(venta);
-		venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
-		if (repetir) {
-			while (aplicantes.size() > 0) {
-				venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
-				aplicantes = condicion.getAplicantes(venta);
-			}
+		while (aplicantes.size() > 0) {
+			venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
+			if (!repetir)
+				return;
+			aplicantes = condicion.getAplicantes(venta);
 		}
 	}
 }
