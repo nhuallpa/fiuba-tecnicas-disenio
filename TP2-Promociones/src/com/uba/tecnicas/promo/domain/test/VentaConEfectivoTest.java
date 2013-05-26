@@ -46,7 +46,7 @@ public class VentaConEfectivoTest extends TestCase {
 	}
 
 	@Test
-	public void testHoyVendeDosCocasPagaUna() {
+	public void testHoyLlevaDosCocasPagaUna() {
 		Venta venta = new VentaCaja(Calendar.getInstance());
 		venta.agregarItem(coca, 2);
 		venta.agregarItem(cepillo, 1);
@@ -56,7 +56,7 @@ public class VentaConEfectivoTest extends TestCase {
 	}
 
 	@Test
-	public void testMañanaVendeDosCocasPagaDosYUnCepillo() {
+	public void testMañanaLlevaDosCocasPagaDos() {
 		Calendar mañana = Calendar.getInstance();
 		mañana.add(Calendar.DAY_OF_MONTH, 1);
 		Venta venta = new VentaCaja(mañana);

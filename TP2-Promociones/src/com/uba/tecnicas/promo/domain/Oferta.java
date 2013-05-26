@@ -1,5 +1,6 @@
 package com.uba.tecnicas.promo.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Oferta {
@@ -16,8 +17,10 @@ public class Oferta {
 	}
 	
 	public void aplicar(Venta venta) {
-		List<Item> aplicantes = condicion.getAplicantes(venta);
-		while (aplicantes.size() > 0) {
+		// List<Item> aplicantes = condicion.getAplicantes(venta);
+		// while (aplicantes.size() > 0) {
+		List<Item> aplicantes = new ArrayList<Item>();
+		while (condicion.seCumple(venta, aplicantes)) {
 			venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
 			if (!repetir)
 				return;

@@ -24,6 +24,14 @@ public class CondicionDia implements CondicionOferta {
 		else
 			return new ArrayList<Item>();
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		if (diaSemana == venta.getFechaVenta().get(Calendar.DAY_OF_WEEK))
+			return decorado.seCumple(venta, aplicantes);
+		else
+			return false;
+	}
 	
 	public static CondicionDia Lunes(CondicionOferta decorado) {
 		return new CondicionDia(Calendar.MONDAY, decorado);

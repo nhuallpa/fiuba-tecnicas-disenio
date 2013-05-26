@@ -29,4 +29,15 @@ public class CondicionCompuesta implements CondicionOferta {
 		}
 		return resultado;
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		for (CondicionOferta condicion : condiciones) {
+			if (!condicion.seCumple(venta, aplicantes)) {
+				aplicantes.clear();
+				return false;
+			}
+		}
+		return true;
+	}
 }

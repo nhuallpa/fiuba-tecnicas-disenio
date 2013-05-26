@@ -12,4 +12,9 @@ public class CondicionItemsComprados implements CondicionOferta {
 	public List<Item> getAplicantes(Venta venta) {
 		return venta.getItems();
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		return true;
+	}
 }

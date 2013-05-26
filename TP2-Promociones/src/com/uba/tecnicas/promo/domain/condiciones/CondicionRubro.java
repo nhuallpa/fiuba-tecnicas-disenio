@@ -18,4 +18,15 @@ public class CondicionRubro implements CondicionOferta {
 	public List<Item> getAplicantes(Venta venta) {
 		return venta.getItems(new FiltroRubro(rubro));
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		List<Item> items = venta.getItems(new FiltroRubro(rubro));
+		if (items.size() > 0) {
+			aplicantes.addAll(items);
+			return true;
+		}
+		else
+			return false;
+	}
 }

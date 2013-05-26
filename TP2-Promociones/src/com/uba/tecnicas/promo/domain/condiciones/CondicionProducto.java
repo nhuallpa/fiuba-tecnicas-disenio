@@ -19,4 +19,15 @@ public class CondicionProducto implements CondicionOferta {
 	public List<Item> getAplicantes(Venta venta) {
 		return venta.getItems(new FiltroProducto(producto));
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		List<Item> items = venta.getItems(new FiltroProducto(producto));
+		if (items.size() > 0) {
+			aplicantes.addAll(items);
+			return true;
+		}
+		else
+			return false;
+	}
 }

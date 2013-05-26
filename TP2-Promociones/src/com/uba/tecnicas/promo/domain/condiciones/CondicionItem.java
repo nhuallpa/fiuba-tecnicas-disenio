@@ -28,4 +28,21 @@ public class CondicionItem implements CondicionOferta {
 		catch (ProductoNoEncontradoException e) {}
 		return items;
 	}
+
+	@Override
+	public boolean seCumple(Venta venta, List<Item> aplicantes) {
+		try {
+			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
+			double diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
+			if (diferencia >= itemBuscado.getCantidad()) {
+				aplicantes.add(itemBuscado);
+				return true;
+			}
+			else
+				return false;
+		}
+		catch (ProductoNoEncontradoException e) {
+			return false;
+		}
+	}
 }
