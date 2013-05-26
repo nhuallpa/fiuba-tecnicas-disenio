@@ -1,4 +1,4 @@
-package com.uba.tecnicas.promo.domain.condicion;
+package com.uba.tecnicas.promo.domain.condiciones;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@ import com.uba.tecnicas.promo.domain.Oferta;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
-import com.uba.tecnicas.promo.domain.condicion.CondicionFormaPago;
+import com.uba.tecnicas.promo.domain.condiciones.CondicionFormaPago;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreTotal;
 
 public class VentaConCreditoTest extends TestCase {
