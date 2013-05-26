@@ -9,7 +9,8 @@ public class Oferta {
 	private CondicionOferta condicion;
 	private boolean repetir;
 	
-	public Oferta(String nombre, CondicionOferta condicion, DescuentoOferta descuento, boolean repetir) {
+	public Oferta(String nombre, CondicionOferta condicion,
+			DescuentoOferta descuento, boolean repetir) {
 		this.nombre = nombre;
 		this.condicion = condicion;
 		this.descuento = descuento;
@@ -17,15 +18,11 @@ public class Oferta {
 	}
 	
 	public void aplicar(Venta venta) {
-		// List<Item> aplicantes = condicion.getAplicantes(venta);
-		// while (aplicantes.size() > 0) {
 		List<Item> aplicantes = new ArrayList<Item>();
 		while (condicion.seCumple(venta, aplicantes)) {
-			//venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
 			descuento.aplicarDescuento(nombre, venta, aplicantes);
 			if (!repetir)
 				return;
-			aplicantes = condicion.getAplicantes(venta);
 		}
 	}
 }

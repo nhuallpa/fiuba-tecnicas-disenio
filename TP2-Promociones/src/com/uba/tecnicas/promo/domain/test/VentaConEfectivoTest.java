@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.uba.tecnicas.promo.domain.CondicionOferta;
 import com.uba.tecnicas.promo.domain.DescuentoOferta;
-import com.uba.tecnicas.promo.domain.Item;
+import com.uba.tecnicas.promo.domain.ItemComprado;
 import com.uba.tecnicas.promo.domain.Oferta;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.domain.Venta;
@@ -35,13 +35,13 @@ public class VentaConEfectivoTest extends TestCase {
 	
 	private CondicionOferta generarOferta() {
 		switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
-			case Calendar.MONDAY: return CondicionDia.Lunes(new CondicionItem(new Item(coca, 2)));
-			case Calendar.TUESDAY: return CondicionDia.Martes(new CondicionItem(new Item(coca, 2)));
-			case Calendar.WEDNESDAY: return CondicionDia.Miercoles(new CondicionItem(new Item(coca, 2)));
-			case Calendar.THURSDAY: return CondicionDia.Jueves(new CondicionItem(new Item(coca, 2)));
-			case Calendar.FRIDAY: return CondicionDia.Viernes(new CondicionItem(new Item(coca, 2)));
-			case Calendar.SATURDAY: return CondicionDia.Sabado(new CondicionItem(new Item(coca, 2)));
-			default: return CondicionDia.Domingo(new CondicionItem(new Item(coca, 2)));
+			case Calendar.MONDAY: return CondicionDia.Lunes(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.TUESDAY: return CondicionDia.Martes(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.WEDNESDAY: return CondicionDia.Miercoles(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.THURSDAY: return CondicionDia.Jueves(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.FRIDAY: return CondicionDia.Viernes(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.SATURDAY: return CondicionDia.Sabado(new CondicionItem(new ItemComprado(coca, 2)));
+			default: return CondicionDia.Domingo(new CondicionItem(new ItemComprado(coca, 2)));
 		}
 	}
 
@@ -52,7 +52,7 @@ public class VentaConEfectivoTest extends TestCase {
 		venta.agregarItem(cepillo, 1);
 		oferta.aplicar(venta);
 		assertEquals(4.0, venta.getTotal());
-		assertEquals(3.0, venta.getCantidadProductosVendidos());
+		assertEquals(3, venta.getCantidadProductosVendidos());
 	}
 
 	@Test
@@ -64,6 +64,6 @@ public class VentaConEfectivoTest extends TestCase {
 		venta.agregarItem(cepillo, 1);
 		oferta.aplicar(venta);
 		assertEquals(5.0, venta.getTotal());
-		assertEquals(3.0, venta.getCantidadProductosVendidos());
+		assertEquals(3, venta.getCantidadProductosVendidos());
 	}
 }

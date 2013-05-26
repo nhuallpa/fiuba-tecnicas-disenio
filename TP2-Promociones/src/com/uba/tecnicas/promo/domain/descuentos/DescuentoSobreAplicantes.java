@@ -13,15 +13,6 @@ public class DescuentoSobreAplicantes implements DescuentoOferta {
 	public DescuentoSobreAplicantes(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
-	
-	@Override
-	public Descuento crearDescuento(String nombre, List<Item> aplicantes) {
-		double total = 0;
-		for (Item aplicante : aplicantes) {
-			total += aplicante.getImporte();
-		}
-		return new Descuento(nombre, total*porcentaje, aplicantes);
-	}
 
 	@Override
 	public void aplicarDescuento(String nombre, Venta venta,
@@ -30,6 +21,6 @@ public class DescuentoSobreAplicantes implements DescuentoOferta {
 		for (Item aplicante : aplicantes) {
 			total += aplicante.getImporte();
 		}
-		venta.agregarDescuento(new Descuento(nombre, total*porcentaje, aplicantes));
+		venta.agregarDescuentoGeneral(new Descuento(nombre, total*porcentaje));
 	}
 }

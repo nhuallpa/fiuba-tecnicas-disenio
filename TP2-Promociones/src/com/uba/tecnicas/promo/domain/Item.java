@@ -1,34 +1,9 @@
 package com.uba.tecnicas.promo.domain;
 
-public class Item {
-	private Producto producto = null;
-	private double cantidad;
-	
-	public Item(Producto producto, double cantidad) {
-		this.producto = producto;
-		this.cantidad = cantidad;
-	}
-	
-	public double getCantidad() {
-		return cantidad;
-	}
-
-	public double getImporte() {
-		return cantidad * producto.getPrecio();
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-	
-	public void sumar(double cantidad) {
-		this.cantidad += cantidad;
-	}
-
-	public Item resta(Item item) throws ImposibleRestarItemException {
-		if (this.producto.equals(item.producto) && cantidad < item.cantidad)
-			return new Item(producto, cantidad);
-		else
-			throw new ImposibleRestarItemException();
-	}
+public interface Item {
+	public Producto getProducto();
+	public int getCantidad();
+	public double getImporte();
+	public void sumar(int cantidad);
+	public void restar(int cantidad);
 }

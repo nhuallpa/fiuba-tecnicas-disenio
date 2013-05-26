@@ -5,13 +5,16 @@ import java.util.List;
 
 public interface Venta {
 	public double getTotal();
-	public void agregarItem(Producto producto, double cantidad);
-	public List<Item> getItems();
-	public List<Item> getItems(FiltroItem filtro);
-	public Item getItem(FiltroItem filtro) throws ProductoNoEncontradoException;
+	public void agregarItem(Producto producto, int cantidad);
+	public List<ItemComprado> getItemsComprados();
+	public List<Item> getItems(Filtro filtro);
+	public Item getItem(Filtro filtro) throws ProductoNoEncontradoException;
 	public List<Descuento> getDescuentos();
-	public void agregarDescuento(Descuento descuento);
-	public double getCantidadDescontada(Producto producto);
-	public double getCantidadProductosVendidos();
+	public void agregarDescuentoGeneral(Descuento descuento);
+	public void agregarDescuentoParticular(ItemDescuento descuento);
+	public int getCantidadDescontada(Producto producto);
+	public int getCantidadProductosVendidos();
 	public Calendar getFechaVenta();
+	public void setFormaPago(FormaPago formaPago);
+	public boolean esFormaPago(FormaPago formaPago);
 }

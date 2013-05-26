@@ -17,18 +17,6 @@ public class CondicionCompuesta implements CondicionOferta {
 	public void agregar(CondicionOferta condicion) {
 		condiciones.add(condicion);
 	}
-	
-	@Override
-	public List<Item> getAplicantes(Venta venta) {
-		List<Item> resultado = new ArrayList<Item>();
-		List<Item> resultadoIndividual;
-		for (CondicionOferta condicion : condiciones) {
-			resultadoIndividual = condicion.getAplicantes(venta);
-			if (resultadoIndividual.size() > 0)
-				resultado.addAll(resultadoIndividual);
-		}
-		return resultado;
-	}
 
 	@Override
 	public boolean seCumple(Venta venta, List<Item> aplicantes) {

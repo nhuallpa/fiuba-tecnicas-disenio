@@ -30,7 +30,7 @@ public class Caja {
 		return ventaActual.getTotal();
 	}
 
-	public double getCantidadProductos() {
+	public int getCantidadProductos() {
 		return ventaActual.getCantidadProductosVendidos();
 	}
 

@@ -1,6 +1,5 @@
 package com.uba.tecnicas.promo.domain.condiciones;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,14 +14,6 @@ public class CondicionDia implements CondicionOferta {
 	private CondicionDia(int diaSemana, CondicionOferta decorado) {
 		this.diaSemana = diaSemana;
 		this.decorado = decorado;
-	}
-	
-	@Override
-	public List<Item> getAplicantes(Venta venta) {
-		if (diaSemana == venta.getFechaVenta().get(Calendar.DAY_OF_WEEK))
-			return decorado.getAplicantes(venta);
-		else
-			return new ArrayList<Item>();
 	}
 
 	@Override

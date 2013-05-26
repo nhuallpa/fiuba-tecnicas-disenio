@@ -13,11 +13,6 @@ public class CondicionRubro implements CondicionOferta {
 	public CondicionRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	
-	@Override
-	public List<Item> getAplicantes(Venta venta) {
-		return venta.getItems(new FiltroRubro(rubro));
-	}
 
 	@Override
 	public boolean seCumple(Venta venta, List<Item> aplicantes) {

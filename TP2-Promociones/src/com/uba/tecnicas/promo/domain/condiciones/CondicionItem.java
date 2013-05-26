@@ -1,6 +1,5 @@
 package com.uba.tecnicas.promo.domain.condiciones;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.uba.tecnicas.promo.domain.CondicionOferta;
@@ -15,25 +14,12 @@ public class CondicionItem implements CondicionOferta {
 	public CondicionItem(Item itemBuscado) {
 		this.itemBuscado = itemBuscado;
 	}
-	
-	@Override
-	public List<Item> getAplicantes(Venta venta) {
-		List<Item> items = new ArrayList<Item>();
-		try {
-			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
-			double diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
-			if (diferencia >= itemBuscado.getCantidad())
-				items.add(itemBuscado);
-		}
-		catch (ProductoNoEncontradoException e) {}
-		return items;
-	}
 
 	@Override
 	public boolean seCumple(Venta venta, List<Item> aplicantes) {
 		try {
 			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
-			double diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
+			int diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
 			if (diferencia >= itemBuscado.getCantidad()) {
 				aplicantes.add(itemBuscado);
 				return true;
