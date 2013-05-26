@@ -17,7 +17,7 @@ import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionCompuesta;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionRubro;
-import com.uba.tecnicas.promo.domain.descuentos.DescuentoGeneral;
+import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreTotal;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
 
 public class DescuentosTest extends TestCase {
@@ -69,7 +69,7 @@ public class DescuentosTest extends TestCase {
 		venta.agregarItem(sprite, 1);
 		String nombreOferta = "Descuento a las bebidas";
 		CondicionOferta condicion = new CondicionRubro("Bebidas");
-		DescuentoOferta descuento = new DescuentoGeneral(0.1);
+		DescuentoOferta descuento = new DescuentoSobreTotal(0.1);
 		
 		Oferta oferta = new Oferta(nombreOferta, condicion, descuento, false);
 		oferta.aplicar(venta);

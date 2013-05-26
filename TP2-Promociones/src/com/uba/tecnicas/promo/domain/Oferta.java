@@ -21,7 +21,8 @@ public class Oferta {
 		// while (aplicantes.size() > 0) {
 		List<Item> aplicantes = new ArrayList<Item>();
 		while (condicion.seCumple(venta, aplicantes)) {
-			venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
+			//venta.agregarDescuento(descuento.crearDescuento(nombre, aplicantes));
+			descuento.aplicarDescuento(nombre, venta, aplicantes);
 			if (!repetir)
 				return;
 			aplicantes = condicion.getAplicantes(venta);
