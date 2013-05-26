@@ -28,22 +28,35 @@ public class VentaConCreditoTest extends TestCase {
 		double precioCepillo = 3;
 		coca = new Producto("CocaCola", precioCoca, "Bebida");
 		cepillo = new Producto("Cepillo", precioCepillo, "Perfumeria");
-		CondicionOferta condicionOferta = new CondicionFormaPago(FormaPago.DEBITO); 
-		DescuentoOferta descuento = new DescuentoSobreTotal(10);
-		oferta = new Oferta("10 % desc con Debito", condicionOferta, descuento, true);
+		CondicionOferta condicionOferta = new CondicionFormaPago(FormaPago.CREDITO); 
+		DescuentoOferta descuento = new DescuentoSobreTotal(0.1);
+		oferta = new Oferta("10 % desc con Debito", condicionOferta, descuento, false);
 	}
 	
 
 	@Test
-	public void testPagandoConTarjetaDebitoDiezPorcientoDescuento() {
+	public void testPagandoConTarjetaCreditoDiezPorcientoDescuento() {
 		Venta venta = new VentaCaja(Calendar.getInstance());
 		int cantCocas = 2;
 		int cantCepillos = 1;
 		venta.agregarItem(coca, cantCocas);
 		venta.agregarItem(cepillo, cantCepillos);
+		venta.setFormaPago(FormaPago.CREDITO);
 		oferta.aplicar(venta);
 		assertEquals(4.5, venta.getTotal());
-		assertEquals(4.0, venta.getCantidadProductosVendidos());
+		assertEquals(3.0, venta.getCantidadProductosVendidos());
 	}
 
+	@Test
+	public void testPagandoSinTarjCreditoNoTienDescuento() {
+		Venta venta = new VentaCaja(Calendar.getInstance());
+		int cantCocas = 2;
+		int cantCepillos = 1;
+		venta.agregarItem(coca, cantCocas);
+		venta.agregarItem(cepillo, cantCepillos);
+		venta.setFormaPago(FormaPago.EFECTIVO);
+		oferta.aplicar(venta);
+		assertEquals(5.0, venta.getTotal());
+		assertEquals(3.0, venta.getCantidadProductosVendidos());
+	}
 }
