@@ -8,7 +8,7 @@ public class VentaCaja implements Venta {
 	private List<Item> items = new ArrayList<Item>();
 	private List<Descuento> descuentos = new ArrayList<Descuento>();
 	private Calendar fechaVenta;
-	
+	private FormaPago formaPago;
 	public VentaCaja(Calendar fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
@@ -91,4 +91,14 @@ public class VentaCaja implements Venta {
 	public void setFechaVenta(Calendar fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
+
+	public boolean esFormaPago(FormaPago formaPago){
+		if (this.formaPago == null || formaPago == null) return false;
+		return this.formaPago.equals(formaPago);
+	}
+
+	public void setFormaPago(FormaPago formaPago) {
+		this.formaPago = formaPago;
+	}
+	
 }

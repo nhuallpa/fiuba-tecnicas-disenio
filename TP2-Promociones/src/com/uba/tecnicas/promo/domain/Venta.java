@@ -14,4 +14,6 @@ public interface Venta {
 	public double getCantidadDescontada(Producto producto);
 	public double getCantidadProductosVendidos();
 	public Calendar getFechaVenta();
+	public void setFormaPago(FormaPago formaPago);
+	public boolean esFormaPago(FormaPago formaPago);
 }
