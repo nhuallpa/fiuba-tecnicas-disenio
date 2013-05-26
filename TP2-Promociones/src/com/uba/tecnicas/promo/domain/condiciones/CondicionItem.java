@@ -28,9 +28,4 @@ public class CondicionItem implements CondicionOferta {
 		catch (ProductoNoEncontradoException e) {}
 		return items;
 	}
-
-	@Override
-	public boolean aplica(Venta venta) {
-		return true;
-	}
 }

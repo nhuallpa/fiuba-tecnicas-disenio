@@ -2,7 +2,6 @@ package com.uba.tecnicas.promo.domain.condiciones;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.uba.tecnicas.promo.domain.CondicionOferta;
@@ -10,45 +9,47 @@ import com.uba.tecnicas.promo.domain.Item;
 import com.uba.tecnicas.promo.domain.Venta;
 
 public class CondicionDia implements CondicionOferta {
-	public static final CondicionOferta LUNES = new CondicionDia(Calendar.MONDAY, "Lunes");
-	public static final CondicionOferta MARTES = new CondicionDia(Calendar.TUESDAY, "Martes");
-	public static final CondicionOferta MIERCOLES = new CondicionDia(Calendar.WEDNESDAY, "Miercoles");
-	public static final CondicionOferta JUEVES = new CondicionDia(Calendar.THURSDAY, "Jueves");
-	public static final CondicionOferta VIERNES = new CondicionDia(Calendar.FRIDAY, "Viernes");
-	public static final CondicionOferta SABADO = new CondicionDia(Calendar.SATURDAY, "Sabado");
-	public static final CondicionOferta DOMINGO = new CondicionDia(Calendar.SUNDAY, "Domingo");
 	private int diaSemana;
-	private String descripcion;
+	private CondicionOferta decorado;
 	
-	private CondicionDia(int diaSemana, String descripcion) {
+	private CondicionDia(int diaSemana, CondicionOferta decorado) {
 		this.diaSemana = diaSemana;
-		this.descripcion = descripcion;
+		this.decorado = decorado;
 	}
 	
 	@Override
 	public List<Item> getAplicantes(Venta venta) {
-		return new ArrayList<Item>();
+		if (diaSemana == venta.getFechaVenta().get(Calendar.DAY_OF_WEEK))
+			return decorado.getAplicantes(venta);
+		else
+			return new ArrayList<Item>();
 	}
-
-	public int getDiaSemana() {
-		return diaSemana;
+	
+	public static CondicionDia Lunes(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.MONDAY, decorado);
 	}
-
-	public void setDiaSemana(int diaSemana) {
-		this.diaSemana = diaSemana;
+	
+	public static CondicionDia Martes(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.TUESDAY, decorado);
 	}
-
-	public String getDescripcion() {
-		return descripcion;
+	
+	public static CondicionDia Miercoles(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.WEDNESDAY, decorado);
 	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	
+	public static CondicionDia Jueves(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.THURSDAY, decorado);
 	}
-	@Override
-	public boolean aplica(Venta venta) {
-		Calendar diaVenta = Calendar.getInstance();
-		diaVenta.setTime(venta.getFechaVenta());
-		return this.diaSemana == diaVenta.get(Calendar.DAY_OF_WEEK);
+	
+	public static CondicionDia Viernes(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.FRIDAY, decorado);
+	}
+	
+	public static CondicionDia Sabado(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.SATURDAY, decorado);
+	}
+	
+	public static CondicionDia Domingo(CondicionOferta decorado) {
+		return new CondicionDia(Calendar.SUNDAY, decorado);
 	}
 }

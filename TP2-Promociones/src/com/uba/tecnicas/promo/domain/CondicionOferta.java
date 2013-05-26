@@ -4,5 +4,4 @@ import java.util.List;
 
 public interface CondicionOferta {
 	public List<Item> getAplicantes(Venta venta);
-	public boolean aplica(Venta venta);
 }

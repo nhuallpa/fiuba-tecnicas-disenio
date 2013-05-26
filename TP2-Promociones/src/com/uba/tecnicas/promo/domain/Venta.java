@@ -1,6 +1,6 @@
 package com.uba.tecnicas.promo.domain;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public interface Venta {
@@ -12,6 +12,6 @@ public interface Venta {
 	public List<Descuento> getDescuentos();
 	public void agregarDescuento(Descuento descuento);
 	public double getCantidadDescontada(Producto producto);
-	public int getCantidadProductosVendidos();
-	public Date getFechaVenta();
+	public double getCantidadProductosVendidos();
+	public Calendar getFechaVenta();
 }

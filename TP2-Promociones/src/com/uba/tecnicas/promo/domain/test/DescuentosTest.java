@@ -1,6 +1,6 @@
 package com.uba.tecnicas.promo.domain.test;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import junit.framework.TestCase;
 
@@ -27,7 +27,7 @@ public class DescuentosTest extends TestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		venta = new VentaCaja(new Date());
+		venta = new VentaCaja(Calendar.getInstance());
 		pepsi = new Producto("Pepsi", 12, "Bebidas");
 		sprite = new Producto("Sprite", 12, "Bebidas");
 	}
@@ -54,7 +54,7 @@ public class DescuentosTest extends TestCase {
 		venta.agregarItem(sprite, 1);
 		String nombreOferta = "Sprite gratis con una coca";
 		CondicionCompuesta condCompuesta = new CondicionCompuesta();
-		condCompuesta.agregar(new CondicionItem(new Item(pepsi, 1)));
+		condCompuesta.agregar(new CondicionItem(new Item(pepsi, 2)));
 		condCompuesta.agregar(new CondicionItem(new Item(sprite, 1)));
 		
 		DescuentoOferta descuento = new DescuentoSobreProducto(sprite, 1);

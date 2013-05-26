@@ -1,15 +1,15 @@
 package com.uba.tecnicas.promo.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class VentaCaja implements Venta {
 	private List<Item> items = new ArrayList<Item>();
 	private List<Descuento> descuentos = new ArrayList<Descuento>();
-	private Date fechaVenta = null;
+	private Calendar fechaVenta;
 	
-	public VentaCaja(Date fechaVenta) {
+	public VentaCaja(Calendar fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 	
@@ -75,8 +75,8 @@ public class VentaCaja implements Venta {
 	}
 
 	@Override
-	public int getCantidadProductosVendidos() {
-		int cantidadProductos = 0;
+	public double getCantidadProductosVendidos() {
+		double cantidadProductos = 0;
 		for (Item item : items) {
 			cantidadProductos += item.getCantidad(); 
 		}
@@ -84,11 +84,11 @@ public class VentaCaja implements Venta {
 	}
 
 	@Override
-	public Date getFechaVenta() {
+	public Calendar getFechaVenta() {
 		return fechaVenta;
 	}
 	
-	public void setFechaVenta(Date fechaVenta) {
+	public void setFechaVenta(Calendar fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 }

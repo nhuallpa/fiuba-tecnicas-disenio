@@ -1,13 +1,12 @@
 package com.uba.tecnicas.promo.domain;
 
-import java.util.Date;
-
+import java.util.Calendar;
 
 public class Caja {
-	Venta ventaActual = null;
-	private Date fechaApertura;
+	private Venta ventaActual;
+	private Calendar fechaApertura;
 	
-	public void abrir(Date fechaApertura) {
+	public void abrir(Calendar fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 
@@ -31,7 +30,7 @@ public class Caja {
 		return ventaActual.getTotal();
 	}
 
-	public int getCantidadProductos() {
+	public double getCantidadProductos() {
 		return ventaActual.getCantidadProductosVendidos();
 	}
 

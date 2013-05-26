@@ -1,6 +1,6 @@
 package com.uba.tecnicas.promo.domain.test;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import junit.framework.TestCase;
 
@@ -18,13 +18,13 @@ public class VentasTest extends TestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		venta = new VentaCaja(new Date());
+		venta = new VentaCaja(Calendar.getInstance());
 	}
 
 	@Test
 	public void testVentaUnCaramelo() {
 		double total = 1.0;
-		Producto prod = new Producto("Caramelo", 1.0, "");
+		Producto prod = new Producto("Caramelo", 1.0, "Golosinas");
 		venta.agregarItem(prod,1);
 		assertEquals(total, venta.getTotal(),0);
 	}
@@ -32,7 +32,7 @@ public class VentasTest extends TestCase {
 	@Test
 	public void testVentaUnDetegente() {
 		double total = 6.0;
-		Producto prod = new Producto("Detergente", 6.0, "");
+		Producto prod = new Producto("Detergente", 6.0, "Limpieza");
 		venta.agregarItem(prod,1);
 		assertEquals(total, venta.getTotal(), 0);
 	}
