@@ -1,11 +1,13 @@
 package com.uba.tecnicas.promo.domain;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Observable;
 
 import com.uba.tecnicas.promo.domain.exception.CajaCerradaException;
 import com.uba.tecnicas.promo.domain.exception.MarketException;
 
-public class Caja {
+public class Caja extends Observable{
 	private boolean estaAbierta;
 	private Venta ventaActual;
 	private Calendar fechaApertura;
@@ -28,8 +30,11 @@ public class Caja {
 		ventaActual.agregarItem(producto, cantidad);
 	}
 
-	public void finalizarVenta(Oferta oferta) {
-		oferta.aplicar(ventaActual);
+	public void finalizarVenta(List<Oferta> ofertas, FormaPago forma) {
+		ventaActual.setFormaPago(forma);
+		for (Oferta oferta : ofertas) {
+			oferta.aplicar(ventaActual);			
+		}		
 	}
 
 	public void cerrar() {
