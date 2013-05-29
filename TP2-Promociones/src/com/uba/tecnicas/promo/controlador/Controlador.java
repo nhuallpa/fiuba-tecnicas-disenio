@@ -23,8 +23,8 @@ public class Controlador {
 			try {
 				caja.iniciarVenta();
 			} catch (MarketException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("\n" + e.toString());
+				//e.printStackTrace();
 			}	
 		}
 	}
