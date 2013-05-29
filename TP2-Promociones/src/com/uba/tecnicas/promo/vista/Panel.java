@@ -1,8 +1,5 @@
 package com.uba.tecnicas.promo.vista;
 
-import Vista.Repositorio;
-import Vista.StreamOutput;
-
 import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.controlador.Controlador;
