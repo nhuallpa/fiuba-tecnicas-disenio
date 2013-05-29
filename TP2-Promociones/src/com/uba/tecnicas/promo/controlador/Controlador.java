@@ -23,7 +23,7 @@ public class Controlador {
 			try {
 				caja.iniciarVenta();
 			} catch (MarketException e) {
-				System.out.println("\n" + e.toString());
+				System.out.println("\n" + e.getMessage());
 				//e.printStackTrace();
 			}	
 		}
