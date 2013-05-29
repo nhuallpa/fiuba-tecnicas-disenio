@@ -1,5 +1,8 @@
 package com.uba.tecnicas.promo.vista;
 
+import Vista.Repositorio;
+import Vista.StreamOutput;
+
 import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.controlador.Controlador;
@@ -56,7 +59,7 @@ public class Panel extends JPanel implements Observer{
 	
 	public Panel(Caja caja, Controlador controlador) {
 		setBackground(SystemColor.activeCaption);
-		setBounds(0, 0, 633, 424);
+		setBounds(0, 0, 701, 424);
 		setLayout(null);
 		
 		this.caja = caja;
@@ -106,7 +109,7 @@ public class Panel extends JPanel implements Observer{
 				if(cantidad > 0 && nombreProducto != null && inicioVenta != null && inicioVenta) {
 					Producto producto = repositorio.getProducto(nombreProducto);
 					controlador.agregarProducto(producto, cantidad);
-					imprimirAgregacionDeProductos(producto);
+					imprimirAgregacionDeProductos(producto, cantidad);
 				}
 			}
 		});
@@ -136,7 +139,7 @@ public class Panel extends JPanel implements Observer{
 		botonCerrarCaja.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonCerrarCaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(open != null && open) {
+				if(open != null && open) { // el open parece redundante pero no lo es
 					System.out.println("\nCaja cerrada");
 					open = false;
 					inicioVenta = false;
@@ -151,16 +154,15 @@ public class Panel extends JPanel implements Observer{
 		botonIniciarVenta.setBounds(429, 21, 109, 23);
 		botonIniciarVenta.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonIniciarVenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(caja.estaAbierta() && (primerProducto) {
+			public void actionPerformed(ActionEvent e) {				
+				if(caja.estaAbierta() && primerProducto) {
 					System.out.println(String.format("\nFecha de Venta:    %1$tY-%1$tm-%1$td", dia.getTime()) 
 							+ "           Hora: " + dia.get(Calendar.HOUR_OF_DAY) + ":" + 
 							dia.get(Calendar.MINUTE));
 					System.out.println("\nProducto\t\t      Cantidad\tPrecioxUnidad\t Precio");
 					primerProducto = false;
+					inicioVenta = true;
 				}
-				
-				inicioVenta = true;
 			}
 		});
 		add(botonIniciarVenta);
@@ -226,9 +228,9 @@ public class Panel extends JPanel implements Observer{
 		System.setOut(printStream);
 	}
 	
+	
 	private void imprimirAgregacionDeProductos(Producto producto, int cantidad) {
-		if(dia != null) {
-			if(primerProducto)		
+		if(dia != null) 		
 			System.out.println(producto.getNombre() + "\t\t       " + cantidad + "\t $" + producto.getPrecio() +
 				"\t $ " + (int)spinnerCantidad.getValue()*producto.getPrecio());
 	}
