@@ -1,21 +1,23 @@
 package com.uba.tecnicas.promo.vista;
 
+
+import com.uba.tecnicas.promo.controlador.Controlador;
+import com.uba.tecnicas.promo.domain.Caja;
 import javax.swing.JFrame;
 
-import com.uba.tecnicas.promo.domain.Caja;
 
 public class Vista {
 	private JFrame frame;	
 	private Panel panel;
 	
-	public Vista(Caja caja) {
+	public Vista(Caja caja, Controlador controlador) {
 		frame= new JFrame();		
-		frame.setBounds(100, 100, 600, 411);
+		frame.setBounds(100, 100, 600, 450);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		
-		panel = new Panel(caja);
+		panel = new Panel(caja, controlador);
 		
 		frame.add(panel);
 		frame.setVisible(true);
