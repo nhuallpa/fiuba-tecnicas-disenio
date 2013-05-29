@@ -83,21 +83,21 @@ public class Panel extends JPanel implements Observer{
 		listaProductos = new DefaultListModel<String>();
 		
 		scroll = new JScrollPane();
-		scroll.setBounds(380, 100, 195, 117);		
+		scroll.setBounds(415, 100, 195, 117);	
 		add(scroll);	
 		
 		labelProd = new JLabel("Productos");
-		labelProd.setBounds(380, 70, 72, 21);
+		labelProd.setBounds(415, 70, 72, 21);
 		labelProd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelProd);
 		
 		labelUnidades = new JLabel("Unidades");
-		labelUnidades.setBounds(380, 229, 65, 21);
+		labelUnidades.setBounds(415, 229, 65, 21);;
 		labelUnidades.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelUnidades);
 		
 		botonAgregarProd = new JButton("Agregar");
-		botonAgregarProd.setBounds(503, 229, 72, 23);
+		botonAgregarProd.setBounds(538, 229, 72, 23);
 		botonAgregarProd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombreProducto = listaDesplegable.getSelectedValue();
@@ -115,7 +115,7 @@ public class Panel extends JPanel implements Observer{
 		add(botonAgregarProd);
 		
 		labelFormaPago = new JLabel("Forma de Pago");
-		labelFormaPago.setBounds(380, 279, 89, 14);
+		labelFormaPago.setBounds(415, 279, 89, 14);
 		labelFormaPago.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelFormaPago);
 		
@@ -132,7 +132,7 @@ public class Panel extends JPanel implements Observer{
 		add(botonAbrirCaja);
 		
 		botonCerrarCaja = new JButton("Cerrar Caja");
-		botonCerrarCaja.setBounds(132, 21, 102, 23);
+		botonCerrarVenta.setBounds(501, 21, 109, 23);
 		botonCerrarCaja.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonCerrarCaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,7 +145,7 @@ public class Panel extends JPanel implements Observer{
 		add(botonCerrarCaja);
 		
 		botonIniciarVenta = new JButton("Iniciar Venta");
-		botonIniciarVenta.setBounds(321, 21, 109, 23);
+		botonIniciarVenta.setBounds(378, 21, 109, 23);
 		botonIniciarVenta.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonIniciarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,12 +180,12 @@ public class Panel extends JPanel implements Observer{
 		add(labelDescuentos);
 		
 		spinnerCantidad = new JSpinner(new SpinnerNumberModel(0,0,100,1));
-		spinnerCantidad.setBounds(441, 229, 46, 20);
+		spinnerCantidad.setBounds(476, 229, 46, 20);
 		add(spinnerCantidad);
 		
 		
 		comboBox = new JComboBox<String>(lista);
-		comboBox.setBounds(473, 277, 102, 20);
+		comboBox.setBounds(508, 277, 102, 20);
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		add(comboBox);
 		
@@ -205,7 +205,7 @@ public class Panel extends JPanel implements Observer{
 		
 		
 		scrollTicket = new JScrollPane();
-		scrollTicket.setBounds(20, 100, 322, 300);
+		scrollTicket.setBounds(20, 100, 368, 300);
 		scrollTicket.setViewportView(textArea);
 		add(scrollTicket);
 		

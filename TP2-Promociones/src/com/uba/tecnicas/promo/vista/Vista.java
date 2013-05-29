@@ -12,7 +12,7 @@ public class Vista {
 	
 	public Vista(Caja caja, Controlador controlador) {
 		frame= new JFrame();		
-		frame.setBounds(100, 100, 600, 450);
+		frame.setBounds(100, 100, 640, 450);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
