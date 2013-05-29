@@ -56,7 +56,7 @@ public class Panel extends JPanel implements Observer{
 	
 	public Panel(Caja caja, Controlador controlador) {
 		setBackground(SystemColor.activeCaption);
-		setBounds(0, 0, 597, 424);
+		setBounds(0, 0, 633, 424);
 		setLayout(null);
 		
 		this.caja = caja;
@@ -83,21 +83,21 @@ public class Panel extends JPanel implements Observer{
 		listaProductos = new DefaultListModel<String>();
 		
 		scroll = new JScrollPane();
-		scroll.setBounds(415, 100, 195, 117);	
+		scroll.setBounds(466, 100, 195, 117);
 		add(scroll);	
 		
 		labelProd = new JLabel("Productos");
-		labelProd.setBounds(415, 70, 72, 21);
+		labelProd.setBounds(466, 70, 72, 21);
 		labelProd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelProd);
 		
 		labelUnidades = new JLabel("Unidades");
-		labelUnidades.setBounds(415, 229, 65, 21);;
+		labelUnidades.setBounds(466, 229, 65, 21);
 		labelUnidades.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelUnidades);
 		
 		botonAgregarProd = new JButton("Agregar");
-		botonAgregarProd.setBounds(538, 229, 72, 23);
+		botonAgregarProd.setBounds(589, 229, 72, 23);
 		botonAgregarProd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombreProducto = listaDesplegable.getSelectedValue();
@@ -115,7 +115,7 @@ public class Panel extends JPanel implements Observer{
 		add(botonAgregarProd);
 		
 		labelFormaPago = new JLabel("Forma de Pago");
-		labelFormaPago.setBounds(415, 279, 89, 14);
+		labelFormaPago.setBounds(466, 279, 89, 14);
 		labelFormaPago.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		add(labelFormaPago);
 		
@@ -132,44 +132,57 @@ public class Panel extends JPanel implements Observer{
 		add(botonAbrirCaja);
 		
 		botonCerrarCaja = new JButton("Cerrar Caja");
-		botonCerrarVenta.setBounds(501, 21, 109, 23);
+		botonCerrarCaja.setBounds(132, 21, 102, 23);
 		botonCerrarCaja.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonCerrarCaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(open != null && open) {
 					System.out.println("\nCaja cerrada");
 					open = false;
+					inicioVenta = false;
+					primerProducto = true;
+
 				}					
 			}
 		});
 		add(botonCerrarCaja);
 		
 		botonIniciarVenta = new JButton("Iniciar Venta");
-		botonIniciarVenta.setBounds(378, 21, 109, 23);
+		botonIniciarVenta.setBounds(429, 21, 109, 23);
 		botonIniciarVenta.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonIniciarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(caja.estaAbierta() && (primerProducto) {
+					System.out.println(String.format("\nFecha de Venta:    %1$tY-%1$tm-%1$td", dia.getTime()) 
+							+ "           Hora: " + dia.get(Calendar.HOUR_OF_DAY) + ":" + 
+							dia.get(Calendar.MINUTE));
+					System.out.println("\nProducto\t\t      Cantidad\tPrecioxUnidad\t Precio");
+					primerProducto = false;
+				}
+				
 				inicioVenta = true;
 			}
 		});
 		add(botonIniciarVenta);
 		
 		botonFinalizarVenta = new JButton("Finalizar Venta");
-		botonFinalizarVenta.setBounds(440, 21, 109, 23);
+		botonFinalizarVenta.setBounds(552, 21, 109, 23);
 		botonFinalizarVenta.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonFinalizarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(inicioVenta != null && inicioVenta) {
+					// 	si hay descuento se muestra esto
+					//System.out.println("Descuentos y/o Promociones");
+				
+					System.out.println("\nForma de Pago                               " + String.valueOf(comboBox.getSelectedItem()));
+					System.out.println("\nTOTAL                                               $" + caja.getVentaTotal());
+				
+					System.out.println("\n\n 　　Este boton solo le pide a caja el total\n" +
+							"no invoca al metodo finalizar caja!!!");
+				}
 				inicioVenta = false;
 				spinnerCantidad.setValue(1);
-				
-				// si hay descuento se muestra esto
-				//System.out.println("Descuentos y/o Promociones");
-				
-				System.out.println("\nForma de Pago                               " + String.valueOf(comboBox.getSelectedItem()));
-				System.out.println("\nTOTAL                                               $" + caja.getVentaTotal());
-				
-				System.out.println("\n\n 　　Este boton solo le pide a caja el total\n" +
-						"no invoca al metodo finalizar caja!!!");
+				primerProducto = true;
 			}
 		});
 		add(botonFinalizarVenta);
@@ -180,12 +193,12 @@ public class Panel extends JPanel implements Observer{
 		add(labelDescuentos);
 		
 		spinnerCantidad = new JSpinner(new SpinnerNumberModel(0,0,100,1));
-		spinnerCantidad.setBounds(476, 229, 46, 20);
+		spinnerCantidad.setBounds(527, 229, 46, 20);
 		add(spinnerCantidad);
 		
 		
 		comboBox = new JComboBox<String>(lista);
-		comboBox.setBounds(508, 277, 102, 20);
+		comboBox.setBounds(559, 277, 102, 20);
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		add(comboBox);
 		
@@ -205,7 +218,7 @@ public class Panel extends JPanel implements Observer{
 		
 		
 		scrollTicket = new JScrollPane();
-		scrollTicket.setBounds(20, 100, 368, 300);
+		scrollTicket.setBounds(20, 100, 421, 300);
 		scrollTicket.setViewportView(textArea);
 		add(scrollTicket);
 		
@@ -213,19 +226,11 @@ public class Panel extends JPanel implements Observer{
 		System.setOut(printStream);
 	}
 	
-	
-	private void imprimirAgregacionDeProductos(Producto producto) {
+	private void imprimirAgregacionDeProductos(Producto producto, int cantidad) {
 		if(dia != null) {
-			if(primerProducto) {
-				System.out.println(String.format("Fecha de Venta    %1$tY-%1$tm-%1$td", dia.getTime()));
-				System.out.println("");
-				System.out.println("Producto\t\t PrecioxUnidad\t Precio");
-				primerProducto = false;
-			}
-		
-			System.out.println(producto.getNombre() + "\t\t $ " + producto.getPrecio() +
+			if(primerProducto)		
+			System.out.println(producto.getNombre() + "\t\t       " + cantidad + "\t $" + producto.getPrecio() +
 				"\t $ " + (int)spinnerCantidad.getValue()*producto.getPrecio());
-		}
 	}
 	
 	
