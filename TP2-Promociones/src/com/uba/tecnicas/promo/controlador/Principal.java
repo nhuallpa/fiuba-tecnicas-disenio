@@ -54,6 +54,6 @@ public class Principal {
 		Oferta ofertaJueves = new Oferta("10% Con Credito", condicionDiaYPago, descuento, false);
 		Oferta ofertaDosPorUno = new Oferta("2x1 Coca", condicionDosPorUno, descuentoCoca, false); 
 		ofertaRepository.agregarOfertas(1, ofertaJueves);
-		ofertaRepository.agregarOfertas(1, ofertaDosPorUno);
+		ofertaRepository.agregarOfertas(2, ofertaDosPorUno);
 	}
 }
