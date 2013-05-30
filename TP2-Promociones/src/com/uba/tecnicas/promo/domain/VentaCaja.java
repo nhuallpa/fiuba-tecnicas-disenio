@@ -33,6 +33,12 @@ public class VentaCaja implements Venta {
 	@Override
 	public void agregarItem(Producto producto, int cantidad) {
 		ItemComprado item = new ItemComprado(producto, cantidad);
+		for (Item itemContenido : items) {
+			if (itemContenido.getProducto() == producto) {
+				itemContenido.setCantidad(itemContenido.getCantidad() + cantidad);
+				return;
+			}
+		}
 		items.add(item);
 	}
 
@@ -109,10 +115,7 @@ public class VentaCaja implements Venta {
 
 	@Override
 	public List<Descuento> getDescuentos() {
-		List<Descuento> descuentos = new ArrayList<Descuento>();
-		descuentos.addAll(descuentosParticulares);
-		descuentos.addAll(descuentosGenerales);
-		return descuentos;
+		return descuentosGenerales;
 	}
 
 	@Override

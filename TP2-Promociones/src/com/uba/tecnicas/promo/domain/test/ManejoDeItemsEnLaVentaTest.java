@@ -51,6 +51,14 @@ public class ManejoDeItemsEnLaVentaTest extends TestCase {
 	}
 	
 	@Test
+	public void testAgregadoDeItemsPorPartes() {
+		Producto prod1 = new Producto("Fosforos", 6.0, "Cocina");
+		venta.agregarItem(prod1, 1);
+		venta.agregarItem(prod1, 1);
+		assertEquals(2, venta.getItemsComprados().get(0).getCantidad());
+	}
+	
+	@Test
 	public void testFiltrarMuchosItemsPorRubro() {
 		Producto prod1 = new Producto("Arroz", 6.0, "Cocina");
 		Producto prod2 = new Producto("Detergente", 6.0, "Limpieza");
