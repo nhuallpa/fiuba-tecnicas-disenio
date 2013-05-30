@@ -6,19 +6,19 @@ import java.util.Set;
 
 import com.uba.tecnicas.promo.domain.Producto;
 
-public class Repositorio {
+public class ProductoRepository {
 	private Map<String, Producto> productos;
-	static private Repositorio fabrica = null;
+	static private ProductoRepository repository = null;
 	
-	private Repositorio() {
+	private ProductoRepository() {
 		productos = new HashMap <String, Producto>();
 	}
 	
-	static public Repositorio getInstance() {
-		if(fabrica == null) 
-			fabrica = new Repositorio();
+	static public ProductoRepository getInstance() {
+		if(repository == null) 
+			repository = new ProductoRepository();
 		
-		return fabrica;
+		return repository;
 	}
 	
 	public Producto getProducto(String nombre) {
