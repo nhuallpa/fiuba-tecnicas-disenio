@@ -1,9 +1,8 @@
 package com.uba.tecnicas.promo.domain.filtros;
 
-import com.uba.tecnicas.promo.domain.Filtro;
 import com.uba.tecnicas.promo.domain.Item;
 
-public class FiltroItem implements Filtro {
+public class FiltroItem extends FiltroAbstracto {
 	private Item item;
 	
 	public FiltroItem(Item item) {

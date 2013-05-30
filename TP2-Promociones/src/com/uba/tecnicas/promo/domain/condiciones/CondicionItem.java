@@ -18,14 +18,12 @@ public class CondicionItem implements CondicionOferta {
 	@Override
 	public boolean seCumple(Venta venta, List<Item> aplicantes) {
 		try {
-			Item encontrado = venta.getItem(new FiltroProducto(itemBuscado.getProducto()));
-			int diferencia = encontrado.getCantidad() - venta.getCantidadDescontada(itemBuscado.getProducto());
-			if (diferencia >= itemBuscado.getCantidad()) {
+			Item encontrado = venta.getItemSinDescuento(new FiltroProducto(itemBuscado.getProducto()));
+			if (encontrado.getCantidad() >= itemBuscado.getCantidad()) {
 				aplicantes.add(itemBuscado);
 				return true;
 			}
-			else
-				return false;
+			return false;
 		}
 		catch (ProductoNoEncontradoException e) {
 			return false;

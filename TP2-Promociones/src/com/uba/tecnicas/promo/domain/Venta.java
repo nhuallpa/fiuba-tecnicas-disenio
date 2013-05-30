@@ -7,12 +7,16 @@ public interface Venta {
 	public double getTotal();
 	public void agregarItem(Producto producto, int cantidad);
 	public List<ItemComprado> getItemsComprados();
-	public List<Item> getItems(Filtro filtro);
+	
 	public Item getItem(Filtro filtro) throws ProductoNoEncontradoException;
+	public Item getItemSinDescuento(Filtro filtro) throws ProductoNoEncontradoException;
+	
 	public List<Descuento> getDescuentos();
+	
+	public List<Item> getItems(Filtro filtro);
+	public List<Item> getItemsSinDescuento(Filtro filtro);
 	public void agregarDescuentoGeneral(Descuento descuento);
 	public void agregarDescuentoParticular(ItemDescuento descuento);
-	public int getCantidadDescontada(Producto producto);
 	public int getCantidadProductosVendidos();
 	public Calendar getFechaVenta();
 	public void setFormaPago(FormaPago formaPago);

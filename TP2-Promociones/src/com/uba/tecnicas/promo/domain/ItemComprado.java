@@ -23,14 +23,9 @@ public class ItemComprado implements Item {
 	public Producto getProducto() {
 		return producto;
 	}
-	
+
 	@Override
-	public void sumar(int cantidad) {
-		this.cantidad += cantidad;
-	}
-	
-	@Override
-	public void restar(int cantidad) {
-		this.cantidad -= cantidad;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 }

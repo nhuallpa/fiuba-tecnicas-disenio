@@ -13,7 +13,7 @@ public class DescuentoSobreAplicantes implements DescuentoOferta {
 	public DescuentoSobreAplicantes(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
-
+	
 	@Override
 	public void aplicarDescuento(String nombre, Venta venta,
 			List<Item> aplicantes) {
