@@ -34,7 +34,7 @@ public class VentaCaja implements Venta {
 	public void agregarItem(Producto producto, int cantidad) {
 		ItemComprado item = new ItemComprado(producto, cantidad);
 		for (Item itemContenido : items) {
-			if (itemContenido.getProducto() == producto) {
+			if (itemContenido.getProducto().equals(producto)) {
 				itemContenido.setCantidad(itemContenido.getCantidad() + cantidad);
 				return;
 			}
