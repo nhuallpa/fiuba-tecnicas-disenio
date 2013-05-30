@@ -7,10 +7,10 @@ import com.uba.tecnicas.promo.domain.Filtro;
 import com.uba.tecnicas.promo.domain.Item;
 import com.uba.tecnicas.promo.domain.Venta;
 
-public class CondicionItems implements CondicionOferta {
+public class CondicionSobreTodosLosItems implements CondicionOferta {
 	private Filtro filtro;
 	
-	public CondicionItems(Filtro filtro) {
+	public CondicionSobreTodosLosItems(Filtro filtro) {
 		this.filtro = filtro;
 	}
 	

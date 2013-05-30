@@ -17,7 +17,7 @@ import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionDia;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionFormaPago;
-import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
+import com.uba.tecnicas.promo.domain.condiciones.CondicionSobreUnItem;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreTotal;
 
@@ -41,7 +41,7 @@ public class VentaConVariasOfertasTest extends TestCase{
 		cepillo = new Producto("Cepillo", 3, "Perfumeria");
 		maceta = new Producto("Maceta", 10, "Jardin");
 		
-		CondicionOferta condicionDosPorUno = new CondicionItem(new ItemComprado(coca, 2)); 
+		CondicionOferta condicionDosPorUno = new CondicionSobreUnItem(new ItemComprado(coca, 2)); 
 		CondicionOferta condicionDiaYPago = CondicionDia.Jueves(new CondicionFormaPago(FormaPago.CREDITO));;
 		DescuentoOferta descuento = new DescuentoSobreTotal(0.1);
 		DescuentoOferta descuentoCoca = new DescuentoSobreProducto(coca, 1);

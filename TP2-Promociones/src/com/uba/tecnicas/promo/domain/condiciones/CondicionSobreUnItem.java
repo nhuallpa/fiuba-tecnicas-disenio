@@ -8,10 +8,10 @@ import com.uba.tecnicas.promo.domain.ProductoNoEncontradoException;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.filtros.FiltroProducto;
 
-public class CondicionItem implements CondicionOferta {
+public class CondicionSobreUnItem implements CondicionOferta {
 	private Item itemBuscado;
 	
-	public CondicionItem(Item itemBuscado) {
+	public CondicionSobreUnItem(Item itemBuscado) {
 		this.itemBuscado = itemBuscado;
 	}
 

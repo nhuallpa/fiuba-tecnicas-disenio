@@ -15,7 +15,7 @@ import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionDia;
-import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
+import com.uba.tecnicas.promo.domain.condiciones.CondicionSobreUnItem;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
 
 public class CondicionDiaTest extends TestCase {
@@ -35,13 +35,13 @@ public class CondicionDiaTest extends TestCase {
 	
 	private CondicionOferta generarOferta() {
 		switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
-			case Calendar.MONDAY: return CondicionDia.Lunes(new CondicionItem(new ItemComprado(coca, 2)));
-			case Calendar.TUESDAY: return CondicionDia.Martes(new CondicionItem(new ItemComprado(coca, 2)));
-			case Calendar.WEDNESDAY: return CondicionDia.Miercoles(new CondicionItem(new ItemComprado(coca, 2)));
-			case Calendar.THURSDAY: return CondicionDia.Jueves(new CondicionItem(new ItemComprado(coca, 2)));
-			case Calendar.FRIDAY: return CondicionDia.Viernes(new CondicionItem(new ItemComprado(coca, 2)));
-			case Calendar.SATURDAY: return CondicionDia.Sabado(new CondicionItem(new ItemComprado(coca, 2)));
-			default: return CondicionDia.Domingo(new CondicionItem(new ItemComprado(coca, 2)));
+			case Calendar.MONDAY: return CondicionDia.Lunes(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			case Calendar.TUESDAY: return CondicionDia.Martes(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			case Calendar.WEDNESDAY: return CondicionDia.Miercoles(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			case Calendar.THURSDAY: return CondicionDia.Jueves(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			case Calendar.FRIDAY: return CondicionDia.Viernes(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			case Calendar.SATURDAY: return CondicionDia.Sabado(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
+			default: return CondicionDia.Domingo(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
 		}
 	}
 
