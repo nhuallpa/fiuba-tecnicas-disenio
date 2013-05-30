@@ -74,4 +74,14 @@ public class VentaConVariasOfertasTest extends TestCase{
 		assertEquals(14.0, venta.getTotal());
 		assertEquals(4, venta.getCantidadProductosVendidos());
 	}
+
+	@Test
+	public void testDecuento2x1CocaAgregadasDeAUna() {
+		Venta venta = new VentaCaja(unViernes);
+		venta.agregarItem(coca, 1);
+		venta.agregarItem(coca, 1);
+		ofertaDosPorUno.aplicar(venta);
+		assertEquals(1.0, venta.getTotal());
+		assertEquals(2, venta.getCantidadProductosVendidos());
+	}
 }
