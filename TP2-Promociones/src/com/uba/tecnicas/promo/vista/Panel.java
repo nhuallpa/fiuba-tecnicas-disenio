@@ -1,8 +1,10 @@
 package com.uba.tecnicas.promo.vista;
 
 import com.uba.tecnicas.promo.domain.Caja;
+import com.uba.tecnicas.promo.domain.FormaPago;
 import com.uba.tecnicas.promo.domain.Producto;
-import com.uba.tecnicas.promo.domain.repositories.Repositorio;
+import com.uba.tecnicas.promo.domain.repositories.OfertasRepository;
+import com.uba.tecnicas.promo.domain.repositories.ProductoRepository;
 import com.uba.tecnicas.promo.controlador.Controlador;
 
 import java.awt.Font;
@@ -51,7 +53,7 @@ public class Panel extends JPanel implements Observer{
 	private Boolean inicioVenta;
 	private Calendar dia;
 	private Caja caja;
-	private Repositorio repositorio;
+	private ProductoRepository repositorio;
 	
 	private Controlador controlador;
 	
@@ -67,8 +69,7 @@ public class Panel extends JPanel implements Observer{
 		construirComponentes();
 		enlazarControlador();
 		
-		repositorio = Repositorio.getInstance();
-		agregarProductos();
+		repositorio = ProductoRepository.getInstance();
 		cargarListaProductos();
 		
 	}
@@ -171,6 +172,8 @@ public class Panel extends JPanel implements Observer{
 		botonFinalizarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(inicioVenta != null && inicioVenta) {
+					
+					caja.finalizarVenta( FormaPago.EFECTIVO);
 					// 	si hay descuento se muestra esto
 					//System.out.println("Descuentos y/o Promociones");
 				
@@ -234,19 +237,7 @@ public class Panel extends JPanel implements Observer{
 	}
 	
 	
-	private void agregarProductos() {
-		repositorio.agregarProducto(new Producto("CocaCola", 9.0, "Bebidas"));
-		repositorio.agregarProducto(new Producto("Pepsi", 7.0, "Bebidas"));
-		repositorio.agregarProducto(new Producto("Fanta", 9.0, "Bebidas"));
-		repositorio.agregarProducto(new Producto("Leche", 5.5, "Lacteos"));
-		repositorio.agregarProducto(new Producto("Yogurt", 8.0, "Lacteos"));
-		repositorio.agregarProducto(new Producto("Fosforos", 2.3, "Cocina"));
-		repositorio.agregarProducto(new Producto("Detergente", 8.0, "Limpieza"));
-		repositorio.agregarProducto(new Producto("Jabon", 4.5, "Limpieza"));
-		repositorio.agregarProducto(new Producto("Shampoo", 14.0, "Limpieza"));
-		repositorio.agregarProducto(new Producto("Vino Malbec", 14.0, "Bebidas"));
-		repositorio.agregarProducto(new Producto("Vino Trapiche", 14.0, "Bebidas"));
-	}
+	
 	
 	private void cargarListaProductos() {
 		listaProductos.clear();

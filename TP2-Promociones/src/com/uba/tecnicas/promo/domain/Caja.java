@@ -1,6 +1,7 @@
 package com.uba.tecnicas.promo.domain;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
 
@@ -11,8 +12,10 @@ public class Caja extends Observable{
 	private boolean estaAbierta;
 	private Venta ventaActual;
 	private Calendar fechaApertura;
+	private Collection<Oferta> ofertas;
 	
-	public Caja() {
+	public Caja(Collection<Oferta> ofertas) {
+		this.ofertas = ofertas;
 		this.estaAbierta = false;
 	}
 	
@@ -30,7 +33,7 @@ public class Caja extends Observable{
 		ventaActual.agregarItem(producto, cantidad);
 	}
 
-	public void finalizarVenta(List<Oferta> ofertas, FormaPago forma) {
+	public void finalizarVenta( FormaPago forma) {
 		ventaActual.setFormaPago(forma);
 		for (Oferta oferta : ofertas) {
 			oferta.aplicar(ventaActual);			

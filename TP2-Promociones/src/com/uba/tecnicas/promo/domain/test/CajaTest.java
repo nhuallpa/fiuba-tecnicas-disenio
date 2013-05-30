@@ -16,7 +16,7 @@ public class CajaTest extends TestCase {
 	
 	@Before
 	public void setUp() throws Exception {
-		caja = new Caja();
+		caja = new Caja(null);
 	}
 	
 	@Test
