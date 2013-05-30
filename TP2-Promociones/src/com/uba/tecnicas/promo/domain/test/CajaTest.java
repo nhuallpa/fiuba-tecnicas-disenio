@@ -1,8 +1,8 @@
 package com.uba.tecnicas.promo.domain.test;
 
-import static org.junit.Assert.*;
-
 import java.util.Calendar;
+
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +11,9 @@ import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.exception.CajaCerradaException;
 import com.uba.tecnicas.promo.domain.exception.MarketException;
 
-public class CajaTest {
+public class CajaTest extends TestCase {
 	Caja caja;
+	
 	@Before
 	public void setUp() throws Exception {
 		caja = new Caja();
@@ -28,6 +29,7 @@ public class CajaTest {
 		caja.abrir(Calendar.getInstance());
 		assertTrue(caja.estaAbierta());
 	}
+	
 	@Test
 	public void testCerrarCaja() {
 		caja.cerrar();

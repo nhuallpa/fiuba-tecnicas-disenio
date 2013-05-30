@@ -7,8 +7,6 @@ import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.domain.exception.MarketException;
 
-
-
 public class Controlador {
 
 	private Caja caja;
@@ -17,14 +15,12 @@ public class Controlador {
 		this.caja = caja;
 	}
 
-	// iniciar venta
 	private class botonIniciarVenta implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			try {
 				caja.iniciarVenta();
 			} catch (MarketException e) {
 				System.out.println("\n" + e.getMessage());
-				//e.printStackTrace();
 			}	
 		}
 	}
@@ -33,7 +29,6 @@ public class Controlador {
 		return new botonIniciarVenta();
 	}
 	
-	// abrir caja
 	private class botonAbrirCaja implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			caja.abrir(Calendar.getInstance());	
@@ -44,7 +39,6 @@ public class Controlador {
 		return new botonAbrirCaja();
 	}
 	
-	// cerrar caja
 	private class botonCerrarCaja implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			caja.cerrar();
@@ -58,11 +52,4 @@ public class Controlador {
 	public void agregarProducto(Producto producto, int cantidad) {
 		caja.agregarProducto(producto, cantidad);
 	}
-	
-	
-	//public void finalizarVenta(List<Oferta> ofertas, FormaPago forma) {
-		// caja.finalizarVenta(List<Oferta> ofertas, FormaPago forma);
-	//}
-	
-
 }

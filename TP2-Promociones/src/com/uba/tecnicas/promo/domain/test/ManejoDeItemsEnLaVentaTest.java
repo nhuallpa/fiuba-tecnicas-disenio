@@ -13,7 +13,7 @@ import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.filtros.FiltroRubro;
 
-public class VentasTest extends TestCase {
+public class ManejoDeItemsEnLaVentaTest extends TestCase {
 	private Venta venta;
 	
 	@Before

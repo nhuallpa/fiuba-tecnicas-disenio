@@ -2,6 +2,7 @@ package com.uba.tecnicas.promo.vista;
 
 import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.Producto;
+import com.uba.tecnicas.promo.domain.repositories.Repositorio;
 import com.uba.tecnicas.promo.controlador.Controlador;
 
 import java.awt.Font;
@@ -67,8 +68,8 @@ public class Panel extends JPanel implements Observer{
 		enlazarControlador();
 		
 		repositorio = Repositorio.getInstance();
-		agregarProductos(); //agrega productos a la fabrica
-		cargarListaProductos(); // carga la lista de productos  a comprar
+		agregarProductos();
+		cargarListaProductos();
 		
 	}
 	
@@ -253,12 +254,9 @@ public class Panel extends JPanel implements Observer{
 		for(final String key:keys)
 			listaProductos.addElement(key);
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
-	//	double total = caja.getVentaTotal();
-		//labelTotalVenta.setText("$ " + new DecimalFormat("#").format(total));
+		
 	}
-
-	
 }

@@ -18,7 +18,7 @@ import com.uba.tecnicas.promo.domain.condiciones.CondicionDia;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
 
-public class VentaConEfectivoTest extends TestCase {
+public class CondicionDiaTest extends TestCase {
 	private Producto coca;
 	private Producto cepillo;
 	private Oferta oferta;

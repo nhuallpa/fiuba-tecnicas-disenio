@@ -14,9 +14,12 @@ import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionCompuesta;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionItem;
+import com.uba.tecnicas.promo.domain.condiciones.CondicionItemsSinDescuento;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionRubro;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreAplicantes;
+import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreElMasCaro;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
+import com.uba.tecnicas.promo.domain.filtros.FiltroRubro;
 
 public class DescuentosTest extends TestCase {
 	private Venta venta;
@@ -25,6 +28,7 @@ public class DescuentosTest extends TestCase {
 	
 	private Oferta ofertaBebidas;
 	private Oferta ofertaCocaSprite;
+	private Oferta ofertaSegundaBebidaAl50;
 	
 	public DescuentosTest() {
 		coca = new Producto("Coca", 12, "Bebidas");
@@ -40,6 +44,10 @@ public class DescuentosTest extends TestCase {
 		
 		ofertaCocaSprite = new Oferta("Sprite gratis con una coca",
 				condCompuesta, new DescuentoSobreProducto(sprite, 1), true);
+		
+		ofertaSegundaBebidaAl50 = new Oferta("2da bebida al 50%",
+				new CondicionItemsSinDescuento(new FiltroRubro("Bebidas"), 2),
+				new DescuentoSobreElMasCaro(0.5), true);
 	}
 	
 	@Before
@@ -78,5 +86,13 @@ public class DescuentosTest extends TestCase {
 		ofertaCocaSprite.aplicar(venta);
 		ofertaBebidas.aplicar(venta);
 		assertEquals(10.8, venta.getTotal());
+	}
+	
+	@Test
+	public void test_Cond_2daBebida_Desc_50() {
+		venta.agregarItem(coca, 1);
+		venta.agregarItem(sprite, 1);
+		ofertaSegundaBebidaAl50.aplicar(venta);
+		assertEquals(6 + 11, venta.getTotal());
 	}
 }
