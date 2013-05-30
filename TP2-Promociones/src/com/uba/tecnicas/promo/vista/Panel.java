@@ -1,9 +1,9 @@
 package com.uba.tecnicas.promo.vista;
 
 import com.uba.tecnicas.promo.domain.Caja;
+import com.uba.tecnicas.promo.domain.Descuento;
 import com.uba.tecnicas.promo.domain.FormaPago;
 import com.uba.tecnicas.promo.domain.Producto;
-import com.uba.tecnicas.promo.domain.repositories.OfertasRepository;
 import com.uba.tecnicas.promo.domain.repositories.ProductoRepository;
 import com.uba.tecnicas.promo.controlador.Controlador;
 
@@ -12,6 +12,8 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -51,6 +53,8 @@ public class Panel extends JPanel implements Observer{
 	private Boolean open;
 	private Boolean primerProducto = true;
 	private Boolean inicioVenta;
+	private double precioTotal;
+	private DecimalFormat df;
 	private Calendar dia;
 	private Caja caja;
 	private ProductoRepository repositorio;
@@ -109,6 +113,7 @@ public class Panel extends JPanel implements Observer{
 					Producto producto = repositorio.getProducto(nombreProducto);
 					controlador.agregarProducto(producto, cantidad);
 					imprimirAgregacionDeProductos(producto, cantidad);
+					precioTotal += producto.getPrecio()*cantidad;
 				}
 			}
 		});
@@ -143,7 +148,7 @@ public class Panel extends JPanel implements Observer{
 					open = false;
 					inicioVenta = false;
 					primerProducto = true;
-
+					precioTotal = 0;
 				}					
 			}
 		});
@@ -155,9 +160,10 @@ public class Panel extends JPanel implements Observer{
 		botonIniciarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				if(caja.estaAbierta() && primerProducto) {
-					System.out.println(String.format("\nFecha de Venta:    %1$tY-%1$tm-%1$td", dia.getTime()) 
-							+ "           Hora: " + dia.get(Calendar.HOUR_OF_DAY) + ":" + 
-							dia.get(Calendar.MINUTE));
+					System.out.println("\n\n********************************************************************************");
+					System.out.println(String.format("Fecha:   %1$tY-%1$tm-%1$td", dia.getTime()) 
+							+ "                            Hora: " + 
+							dia.get(Calendar.HOUR_OF_DAY) + ":" + dia.get(Calendar.MINUTE));
 					System.out.println("\nProducto\t\t      Cantidad\tPrecioxUnidad\t Precio");
 					primerProducto = false;
 					inicioVenta = true;
@@ -171,18 +177,9 @@ public class Panel extends JPanel implements Observer{
 		botonFinalizarVenta.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		botonFinalizarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(inicioVenta != null && inicioVenta) {
-					
-					caja.finalizarVenta( FormaPago.EFECTIVO);
-					// 	si hay descuento se muestra esto
-					//System.out.println("Descuentos y/o Promociones");
+				if(inicioVenta != null && inicioVenta) 					
+					caja.finalizarVenta(StringToFormaPago());				
 				
-					System.out.println("\nForma de Pago                               " + String.valueOf(comboBox.getSelectedItem()));
-					System.out.println("\nTOTAL                                               $" + caja.getVentaTotal());
-				
-					System.out.println("\n\n ¡¡¡¡Este boton solo le pide a caja el total\n" +
-							"no invoca al metodo finalizar caja!!!");
-				}
 				inicioVenta = false;
 				spinnerCantidad.setValue(1);
 				primerProducto = true;
@@ -225,6 +222,11 @@ public class Panel extends JPanel implements Observer{
 		scrollTicket.setViewportView(textArea);
 		add(scrollTicket);
 		
+		
+		df= new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		
+		
 		PrintStream printStream = new PrintStream(new StreamOutput(textArea)); 
 		System.setOut(printStream);
 	}
@@ -237,7 +239,34 @@ public class Panel extends JPanel implements Observer{
 	}
 	
 	
+	private FormaPago StringToFormaPago() {
+		if(String.valueOf(comboBox.getSelectedItem()).equals("Efectivo"))
+			return FormaPago.EFECTIVO;
+		if(String.valueOf(comboBox.getSelectedItem()).equals("Debito"))
+			return FormaPago.DEBITO;
+		return FormaPago.CREDITO;		
+	}
 	
+	private void imprimirResultadoDeVenta() {		
+		System.out.println("\nNumero de articulos:  " + caja.getCantidadProductos());
+		System.out.println("\nSubTotal                                                $ " + precioTotal);
+		precioTotal = 0;
+		List<Descuento> descuentosGenerales = caja.getVenta().getDescuentos();
+
+		if(descuentosGenerales.size() > 0) {
+			
+			System.out.println("Descuentos \n");
+			System.out.println("Descripcion\t\t Monto\n");
+			
+			for(Descuento dscto:descuentosGenerales) {
+				System.out.println(dscto.getNombre() + "\t\t $ " + dscto.getImporte());
+			}
+		}
+		
+		System.out.println("\nForma de Pago                                    " + String.valueOf(comboBox.getSelectedItem()));
+		System.out.println("\nTOTAL                                                    $" + caja.getVentaTotal());
+		System.out.println("\n********************************************************************************");
+	}
 	
 	private void cargarListaProductos() {
 		listaProductos.clear();
@@ -248,6 +277,6 @@ public class Panel extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		imprimirResultadoDeVenta();
 	}
 }

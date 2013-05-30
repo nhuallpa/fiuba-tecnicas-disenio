@@ -2,7 +2,6 @@ package com.uba.tecnicas.promo.domain;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.List;
 import java.util.Observable;
 
 import com.uba.tecnicas.promo.domain.exception.CajaCerradaException;
@@ -38,6 +37,7 @@ public class Caja extends Observable{
 		for (Oferta oferta : ofertas) {
 			oferta.aplicar(ventaActual);			
 		}		
+		actualizarObservadores();
 	}
 
 	public void cerrar() {
@@ -56,5 +56,13 @@ public class Caja extends Observable{
 	public boolean estaAbierta() {
 		return estaAbierta;
 	}
-
+	
+	public Venta getVenta() {
+		return ventaActual;
+	}
+	
+	public void actualizarObservadores() {
+		setChanged();
+		notifyObservers();
+	}
 }
