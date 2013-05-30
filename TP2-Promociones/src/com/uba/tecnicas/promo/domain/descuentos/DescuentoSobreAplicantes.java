@@ -2,7 +2,7 @@ package com.uba.tecnicas.promo.domain.descuentos;
 
 import java.util.List;
 
-import com.uba.tecnicas.promo.domain.Descuento;
+import com.uba.tecnicas.promo.domain.DescuentoGeneral;
 import com.uba.tecnicas.promo.domain.DescuentoOferta;
 import com.uba.tecnicas.promo.domain.Item;
 import com.uba.tecnicas.promo.domain.Venta;
@@ -21,6 +21,6 @@ public class DescuentoSobreAplicantes implements DescuentoOferta {
 		for (Item aplicante : aplicantes) {
 			total += aplicante.getImporte();
 		}
-		venta.agregarDescuentoGeneral(new Descuento(nombre, total*porcentaje));
+		venta.agregarDescuentoGeneral(new DescuentoGeneral(nombre, total*porcentaje));
 	}
 }

@@ -2,7 +2,7 @@ package com.uba.tecnicas.promo.domain;
 
 import java.util.List;
 
-public class ItemDescuento extends ItemComprado {
+public class ItemDescuento extends ItemComprado implements Descuento {
 	private String nombre;
 	private double porcentaje;
 	private List<Item> aplicantes;
@@ -15,6 +15,7 @@ public class ItemDescuento extends ItemComprado {
 		this.aplicantes = aplicantes;
 	}
 	
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

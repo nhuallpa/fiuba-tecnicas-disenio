@@ -109,7 +109,10 @@ public class VentaCaja implements Venta {
 
 	@Override
 	public List<Descuento> getDescuentos() {
-		return descuentosGenerales;
+		List<Descuento> descuentos = new ArrayList<Descuento>();
+		descuentos.addAll(descuentosParticulares);
+		descuentos.addAll(descuentosGenerales);
+		return descuentos;
 	}
 
 	@Override
