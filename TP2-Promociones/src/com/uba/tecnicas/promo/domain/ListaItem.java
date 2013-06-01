@@ -3,15 +3,15 @@ package com.uba.tecnicas.promo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaItem {
-	private List<Item> items;
+public class ListaItem<T extends Item> {
+	private List<T> items;
 	
 	public ListaItem() {
-		items = new ArrayList<Item>();
+		items = new ArrayList<T>();
 	}
 	
-	public void agregar(Item item) {
-		for (Item contenido : items) {
+	public void agregar(T item) {
+		for (T contenido : items) {
 			if (contenido.getProducto().equals(item.getProducto())) {
 				contenido.setCantidad(contenido.getCantidad() + item.getCantidad());
 				return;
@@ -20,8 +20,18 @@ public class ListaItem {
 		items.add(item);
 	}
 	
+	public void agregar(ListaItem<T> lista) {
+		agregar(lista.items);
+	}
+	
+	public void agregar(List<T> lista) {
+		for (T item : lista) {
+			agregar(item);
+		}
+	}
+	
 	public Item getItem(Filtro filtro) {
-		for (Item item : items) {
+		for (T item : items) {
 			if (filtro.seCumple(item)) {
 				return item;
 			}
@@ -29,17 +39,42 @@ public class ListaItem {
 		return null;
 	}
 	
-	public List<Item> getItems(Filtro filtro) {
-		List<Item> coincidencias = new ArrayList<Item>();
-		for (Item item : items) {
+	public ListaItem<T> getItems(Filtro filtro) {
+		ListaItem<T> coincidencias = new ListaItem<T>();
+		for (T item : items) {
 			if (filtro.seCumple(item)) {
-				coincidencias.add(item);
+				coincidencias.items.add(item);
 			}
 		}
 		return coincidencias;
 	}
 	
-	public List<Item> listar() {
+	public int getCantidad(Producto producto) {
+		for (T item : items) {
+			if (item.getProducto().equals(producto)) {
+				return item.getCantidad();
+			}
+		}
+		return 0;
+	}
+	
+	public int getCantidadTotal() {
+		int cantidad = 0;
+		for (T item : items) {
+			cantidad += item.getCantidad();
+		}
+		return cantidad;
+	}
+	
+	public double getTotal() {
+		double total = 0;
+		for (T item : items) {
+			total += item.getImporte();
+		}
+		return total;
+	}
+	
+	public List<T> listar() {
 		return items;
 	}
 }

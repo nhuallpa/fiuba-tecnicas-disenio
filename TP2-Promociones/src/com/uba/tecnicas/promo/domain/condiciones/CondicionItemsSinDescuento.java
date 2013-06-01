@@ -5,6 +5,7 @@ import java.util.List;
 import com.uba.tecnicas.promo.domain.CondicionOferta;
 import com.uba.tecnicas.promo.domain.Filtro;
 import com.uba.tecnicas.promo.domain.Item;
+import com.uba.tecnicas.promo.domain.ItemsUtils;
 import com.uba.tecnicas.promo.domain.Venta;
 
 public class CondicionItemsSinDescuento implements CondicionOferta {
@@ -21,10 +22,10 @@ public class CondicionItemsSinDescuento implements CondicionOferta {
 		int cant = cantidad;
 		List<Item> encontrados = venta.getItemsSinDescuento(filtro);
 		for (Item item : encontrados) {
-			if (item.getCantidad() >= cant) {
+			if (item.getCantidad() - ItemsUtils.getCantidad(aplicantes, item.getProducto()) >= cant) {
 				item.setCantidad(cant);
 			}
-			aplicantes.add(item);
+			ItemsUtils.agregar(aplicantes, item);
 			cant -= item.getCantidad();
 			if (cant == 0)
 				return true;

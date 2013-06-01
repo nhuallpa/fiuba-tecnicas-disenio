@@ -21,4 +21,7 @@ public interface Venta {
 	public Calendar getFechaVenta();
 	public void setFormaPago(FormaPago formaPago);
 	public boolean esFormaPago(FormaPago formaPago);
+	
+	public void agregarCupon(Cupon cupon);
+	public List<Cupon> getCupones();
 }

@@ -8,6 +8,7 @@ public class VentaCaja implements Venta {
 	private List<ItemComprado> items;
 	private List<ItemDescuento> descuentosParticulares; 
 	private List<Descuento> descuentosGenerales;
+	private List<Cupon> cupones;
 	private Calendar fechaVenta;
 	private FormaPago formaPago;
 
@@ -16,6 +17,7 @@ public class VentaCaja implements Venta {
 		items = new ArrayList<ItemComprado>();
 		descuentosParticulares = new ArrayList<ItemDescuento>();
 		descuentosGenerales = new ArrayList<Descuento>();
+		cupones = new ArrayList<Cupon>();
 	}
 	
 	@Override
@@ -160,5 +162,15 @@ public class VentaCaja implements Venta {
 	@Override
 	public void setFormaPago(FormaPago formaPago) {
 		this.formaPago = formaPago;
+	}
+
+	@Override
+	public void agregarCupon(Cupon cupon) {
+		cupones.add(cupon);
+	}
+
+	@Override
+	public List<Cupon> getCupones() {
+		return cupones;
 	}
 }
