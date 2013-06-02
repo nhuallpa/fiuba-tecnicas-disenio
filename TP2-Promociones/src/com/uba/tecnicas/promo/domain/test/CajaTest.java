@@ -18,7 +18,7 @@ public class CajaTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		caja = new Caja(null);
+		caja = new Caja(null,null);
 	}
 	
 	@Test

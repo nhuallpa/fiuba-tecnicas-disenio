@@ -12,10 +12,12 @@ public class Caja extends Observable{
 	private Venta ventaActual;
 	private Calendar fechaApertura;
 	private Collection<Oferta> ofertas;
+	private Sucursal sucursal;
 	
-	public Caja(Collection<Oferta> ofertas) {
+	public Caja(Collection<Oferta> ofertas, Sucursal sucursal) {
 		this.ofertas = ofertas;
 		this.estaAbierta = false;
+		this.sucursal = sucursal;
 	}
 	
 	public void abrir(Calendar fechaApertura) {
@@ -37,6 +39,7 @@ public class Caja extends Observable{
 		for (Oferta oferta : ofertas) {
 			oferta.aplicar(ventaActual);			
 		}		
+		sucursal.agregarItem(ventaActual.getItemsComprados());
 		actualizarObservadores();
 	}
 
