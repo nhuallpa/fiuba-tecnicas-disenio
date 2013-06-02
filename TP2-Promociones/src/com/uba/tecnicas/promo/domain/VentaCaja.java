@@ -11,6 +11,7 @@ public class VentaCaja implements Venta {
 	private List<Cupon> cupones;
 	private Calendar fechaVenta;
 	private FormaPago formaPago;
+	private TipoCliente tipoCliente;
 
 	public VentaCaja(Calendar fechaVenta) {
 		this.fechaVenta = fechaVenta;
@@ -172,5 +173,13 @@ public class VentaCaja implements Venta {
 	@Override
 	public List<Cupon> getCupones() {
 		return cupones;
+	}
+	
+	public TipoCliente getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(TipoCliente tipoCliente) {
+		this.tipoCliente = tipoCliente;
 	}
 }
