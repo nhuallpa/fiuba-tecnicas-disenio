@@ -1,8 +1,10 @@
 package com.uba.tecnicas.promo.domain.test;
 
+import static org.junit.Assert.*;
+
 import java.util.Calendar;
 
-import junit.framework.TestCase;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,12 +13,12 @@ import com.uba.tecnicas.promo.domain.Caja;
 import com.uba.tecnicas.promo.domain.exception.CajaCerradaException;
 import com.uba.tecnicas.promo.domain.exception.MarketException;
 
-public class CajaTest extends TestCase {
+public class CajaTest {
 	Caja caja;
 	
 	@Before
 	public void setUp() throws Exception {
-		caja = new Caja(null);
+		caja = new Caja(null,null);
 	}
 	
 	@Test

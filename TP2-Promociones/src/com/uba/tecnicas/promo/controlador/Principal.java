@@ -7,6 +7,7 @@ import com.uba.tecnicas.promo.domain.FormaPago;
 import com.uba.tecnicas.promo.domain.ItemComprado;
 import com.uba.tecnicas.promo.domain.Oferta;
 import com.uba.tecnicas.promo.domain.Producto;
+import com.uba.tecnicas.promo.domain.Sucursal;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionDia;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionFormaPago;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionSobreUnItem;
@@ -21,7 +22,7 @@ public class Principal {
 	public static void main(String[] args) {
 		levantarProductos();
 		levantarOfertas();
-		Caja caja = new Caja(OfertasRepository.getInstance().getOfertas());
+		Caja caja = new Caja(OfertasRepository.getInstance().getOfertas(), new Sucursal());
 		Controlador controlador = new Controlador(caja);
 		Vista vista = new Vista(caja, controlador);
 		vista.ejecutar();

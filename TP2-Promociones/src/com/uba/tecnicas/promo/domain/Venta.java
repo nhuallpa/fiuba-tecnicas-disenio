@@ -25,4 +25,7 @@ public interface Venta {
 	public void agregarCupon(Cupon cupon);
 	public void generarCupon(Cupon cupon);
 	public List<Cupon> getCupones();
+	
+	public TipoCliente getTipoCliente();
+	public void setTipoCliente(TipoCliente tipoCliente);
 }
