@@ -8,7 +8,8 @@ public class VentaCaja implements Venta {
 	private List<ItemComprado> items;
 	private List<ItemDescuento> descuentosParticulares; 
 	private List<Descuento> descuentosGenerales;
-	private List<Cupon> cupones;
+	private List<Cupon> cuponesGenerados;
+	private List<Cupon> cuponesAplicados;
 	private Calendar fechaVenta;
 	private FormaPago formaPago;
 
@@ -17,11 +18,11 @@ public class VentaCaja implements Venta {
 		items = new ArrayList<ItemComprado>();
 		descuentosParticulares = new ArrayList<ItemDescuento>();
 		descuentosGenerales = new ArrayList<Descuento>();
-		cupones = new ArrayList<Cupon>();
+		cuponesGenerados = new ArrayList<Cupon>();
+		cuponesAplicados = new ArrayList<Cupon>();
 	}
 	
-	@Override
-	public double getTotal() {
+	private double getSubtotal() {
 		double importe = 0;
 		for (ItemComprado item : items)
 			importe += item.getImporte();
@@ -30,6 +31,16 @@ public class VentaCaja implements Venta {
 		for (Descuento descuento : descuentosGenerales)
 			importe += descuento.getImporte();
 		return importe;
+	}
+	
+	@Override
+	public double getTotal() {
+		double subtotal = getSubtotal();
+		double total = subtotal;
+		for (Cupon cupon : cuponesAplicados) {
+			total -= cupon.getImporte(subtotal);
+		}
+		return total;
 	}
 
 	@Override
@@ -166,11 +177,16 @@ public class VentaCaja implements Venta {
 
 	@Override
 	public void agregarCupon(Cupon cupon) {
-		cupones.add(cupon);
+		cuponesAplicados.add(cupon);
 	}
 
 	@Override
 	public List<Cupon> getCupones() {
-		return cupones;
+		return cuponesGenerados;
+	}
+
+	@Override
+	public void generarCupon(Cupon cupon) {
+		cuponesGenerados.add(cupon);
 	}
 }

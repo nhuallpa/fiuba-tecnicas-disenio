@@ -23,6 +23,6 @@ public class DescuentoGeneraCupon implements DescuentoOferta {
 		for (Item aplicante : aplicantes) {
 			monto += aplicante.getImporte();
 		}
-		venta.agregarCupon(new Cupon("Cupon: " + nombre, monto*porcentajeImporte, porcentajeMaximoVenta));
+		venta.generarCupon(new Cupon("Cupon: " + nombre, monto*porcentajeImporte, porcentajeMaximoVenta));
 	}
 }

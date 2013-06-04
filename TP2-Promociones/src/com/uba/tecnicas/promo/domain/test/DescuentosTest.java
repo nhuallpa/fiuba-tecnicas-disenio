@@ -7,18 +7,15 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.uba.tecnicas.promo.domain.CondicionOferta;
 import com.uba.tecnicas.promo.domain.ItemComprado;
 import com.uba.tecnicas.promo.domain.Oferta;
 import com.uba.tecnicas.promo.domain.Producto;
 import com.uba.tecnicas.promo.domain.Venta;
 import com.uba.tecnicas.promo.domain.VentaCaja;
-import com.uba.tecnicas.promo.domain.condiciones.CondicionBucle;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionCompuesta;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionSobreUnItem;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionItemsSinDescuento;
 import com.uba.tecnicas.promo.domain.condiciones.CondicionRubro;
-import com.uba.tecnicas.promo.domain.descuentos.DescuentoGeneraCupon;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreAplicantes;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreElMasCaro;
 import com.uba.tecnicas.promo.domain.descuentos.DescuentoSobreProducto;
@@ -132,15 +129,5 @@ public class DescuentosTest extends TestCase {
 		venta.agregarItem(sprite, 1);
 		oferta.aplicar(venta);
 		assertEquals(12 + 0.7*11, venta.getTotal());
-	}
-	
-	@Test
-	public void test_generacionCuponDescuento() {
-		CondicionOferta cond = new CondicionBucle(new CondicionSobreUnItem(new ItemComprado(coca, 2)));
-		Oferta oferta = new Oferta("2x1 en coca", cond, new DescuentoGeneraCupon(0.5, 0.2), false);
-		venta.agregarItem(coca, 10);
-		oferta.aplicar(venta);
-		assertEquals(60.0, venta.getCupones().get(0).getImporte(1000));
-		assertEquals(2.0, venta.getCupones().get(0).getImporte(10));
 	}
 }

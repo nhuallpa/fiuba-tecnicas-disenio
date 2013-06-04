@@ -23,5 +23,6 @@ public interface Venta {
 	public boolean esFormaPago(FormaPago formaPago);
 	
 	public void agregarCupon(Cupon cupon);
+	public void generarCupon(Cupon cupon);
 	public List<Cupon> getCupones();
 }
